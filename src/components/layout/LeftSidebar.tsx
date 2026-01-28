@@ -14,7 +14,6 @@ const NAV_ITEMS = [
 
 const SIDEBAR_SOCIAL_LINKS = [
     { icon: Github, label: 'Github', href: SOCIAL_LINKS.github },
-    { icon: Twitter, label: 'Twitter', href: SOCIAL_LINKS.twitter },
     { icon: Facebook, label: 'Facebook', href: SOCIAL_LINKS.facebook },
 ];
 

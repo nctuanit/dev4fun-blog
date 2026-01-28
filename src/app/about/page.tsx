@@ -22,7 +22,6 @@ const SKILLS = [
 
 const ABOUT_SOCIAL_LINKS = [
     { icon: Github, label: 'GitHub', href: SOCIAL_CONFIG.github, color: 'hover:bg-gray-500/20 hover:text-gray-300' },
-    { icon: Twitter, label: 'Twitter', href: SOCIAL_CONFIG.twitter, color: 'hover:bg-blue-500/20 hover:text-blue-400' },
     { icon: Facebook, label: 'Facebook', href: SOCIAL_CONFIG.facebook, color: 'hover:bg-blue-600/20 hover:text-blue-500' },
     { icon: Mail, label: 'Email', href: `mailto:${SOCIAL_CONFIG.email}`, color: 'hover:bg-red-500/20 hover:text-red-400' },
     { icon: Globe, label: 'Website', href: SOCIAL_CONFIG.website, color: 'hover:bg-green-500/20 hover:text-green-400' },
