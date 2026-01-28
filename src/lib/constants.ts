@@ -7,7 +7,7 @@ export const SITE_CONFIG = {
     name: 'Dev4Fun',
     title: 'Dev4Fun Blog',
     description: 'Blog cá nhân chia sẻ kiến thức lập trình và công nghệ',
-    url: 'https://dev4fun.blog',
+    url: 'https://dev4fun.vn',
     logo: '/logo.png',
     favicon: '/favicon.ico',
     // Ngôn ngữ
@@ -20,13 +20,11 @@ export const SITE_CONFIG = {
 // ============================================
 
 export const SOCIAL_LINKS = {
-    github: 'https://github.com/dev4fun',
-    twitter: 'https://twitter.com/dev4fun',
-    facebook: 'https://facebook.com/dev4fun',
-    linkedin: 'https://linkedin.com/in/dev4fun',
-    youtube: 'https://youtube.com/@dev4fun',
-    email: 'hello@dev4fun.blog',
-    website: 'https://dev4fun.blog',
+    github: 'https://github.com/nctuanit',
+    facebook: 'https://www.facebook.com/tuannc.dev/',
+    youtube: 'https://www.youtube.com/@devsieucapvippro',
+    email: 'info@dev4fun.vn',
+    website: 'https://dev4fun.vn',
 } as const;
 
 // ============================================

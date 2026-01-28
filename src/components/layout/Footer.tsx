@@ -5,7 +5,6 @@ import { SITE_CONFIG, SOCIAL_LINKS, NAV_ITEMS } from '@/lib/constants';
 
 const FOOTER_SOCIAL_LINKS = [
     { icon: Github, label: 'GitHub', href: SOCIAL_LINKS.github },
-    { icon: Twitter, label: 'Twitter', href: SOCIAL_LINKS.twitter },
     { icon: Facebook, label: 'Facebook', href: SOCIAL_LINKS.facebook },
     { icon: Mail, label: 'Email', href: `mailto:${SOCIAL_LINKS.email}` },
 ];
