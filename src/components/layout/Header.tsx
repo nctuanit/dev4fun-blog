@@ -6,9 +6,11 @@ import { useTheme } from "next-themes";
 import { useState, useEffect } from 'react';
 import { SITE_CONFIG, SOCIAL_LINKS, FEATURES } from '@/lib/constants';
 import { SearchBox } from '@/components/search/SearchBox';
+import { useMounted } from '@/hooks/useMounted';
 
 export function Header() {
-    const { theme, setTheme } = useTheme();
+    const { resolvedTheme, setTheme } = useTheme();
+    const mounted = useMounted();
     const [isMobileSearchOpen, setIsMobileSearchOpen] = useState(false);
 
     // Close mobile search on escape key
@@ -85,10 +87,17 @@ export function Header() {
                     {/* Theme Toggle */}
                     {FEATURES.enableDarkMode && (
                         <button
-                            onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+                            onClick={() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')}
                             className="p-2.5 hover:bg-primary/10 rounded-xl text-muted-foreground hover:text-primary transition-all hover:rotate-12"
+                            aria-label="Chuyển đổi theme"
                         >
-                            {theme === 'dark' ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+                            {!mounted ? (
+                                <div className="w-5 h-5" />
+                            ) : resolvedTheme === 'dark' ? (
+                                <Sun className="w-5 h-5" />
+                            ) : (
+                                <Moon className="w-5 h-5" />
+                            )}
                         </button>
                     )}
                 </div>

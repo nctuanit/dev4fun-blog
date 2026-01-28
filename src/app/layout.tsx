@@ -1,16 +1,24 @@
 import type { Metadata } from "next";
 
 import "./globals.css";
-import { Inter } from "next/font/google";
+import { Be_Vietnam_Pro, JetBrains_Mono } from "next/font/google";
 
-const inter = Inter({ 
-  subsets: ["latin"],
+const beVietnamPro = Be_Vietnam_Pro({ 
+  subsets: ["latin", "vietnamese"],
+  weight: ["300", "400", "500", "600", "700"],
   variable: "--font-sans",
+  display: "swap",
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-mono",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
   title: SEO_CONFIG.defaultTitle,
-  description:SEO_CONFIG.defaultDescription,
+  description: SEO_CONFIG.defaultDescription,
   keywords: SEO_CONFIG.keywords,
 };  
 
@@ -36,7 +44,7 @@ export default function RootLayout({
 
   return (
     <html lang="vi" suppressHydrationWarning>
-      <body className={`${inter.className} ${inter.variable} antialiased`}>
+      <body className={`${beVietnamPro.className} ${beVietnamPro.variable} ${jetbrainsMono.variable} antialiased`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

@@ -1,6 +1,6 @@
-import { MainLayout } from '@/components/layout/MainLayout';
+
 import { getSortedPostsData, getAllTags } from '@/lib/posts';
-import { Code2, Heart, Rocket, Users, FileText, Tag, Github, Twitter, Facebook, Mail, Globe, Sparkles } from 'lucide-react';
+import { Code2, Heart, Rocket, Users, FileText, Tag, Github, Facebook, Mail, Globe, Sparkles } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { SITE_CONFIG, SOCIAL_LINKS as SOCIAL_CONFIG } from '@/lib/constants';

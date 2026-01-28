@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { Github, Twitter, Facebook, Mail, Heart } from 'lucide-react';
+import { Github, Facebook, Mail, Heart } from 'lucide-react';
 import { SITE_CONFIG, SOCIAL_LINKS, NAV_ITEMS } from '@/lib/constants';
 
 const FOOTER_SOCIAL_LINKS = [

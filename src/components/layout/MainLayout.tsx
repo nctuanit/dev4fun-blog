@@ -4,6 +4,8 @@ import React from 'react';
 import { Header } from './Header';
 import { MainContent } from './MainContent';
 import { Footer } from './Footer';
+import BackToTop from '@/components/ui/BackToTop';
+import KeyboardNavigation from '@/components/ui/KeyboardNavigation';
 
 interface MainLayoutProps {
     children: React.ReactNode;
@@ -37,6 +39,12 @@ export function MainLayout({ children, tags, recentPosts }: MainLayoutProps) {
 
             {/* Footer */}
             <Footer />
+
+            {/* Back to Top Button */}
+            <BackToTop />
+
+            {/* Keyboard Navigation */}
+            <KeyboardNavigation />
         </div>
     );
 }

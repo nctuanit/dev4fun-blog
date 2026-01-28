@@ -2,9 +2,10 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { Home, Tag, Github, Twitter, Facebook, BookOpen } from 'lucide-react';
+import { Home, Tag, Github, Facebook, BookOpen } from 'lucide-react';
 import { SITE_CONFIG, SOCIAL_LINKS, THEME_COLORS } from '@/lib/constants';
 import { usePathname } from 'next/navigation';
+import ReadingHistoryWidget from '@/components/post/ReadingHistory';
 
 const NAV_ITEMS = [
     { icon: Home, label: 'Trang chủ', href: '/' },
@@ -69,6 +70,11 @@ export function LeftSidebar() {
                         </Link>
                     ))}
                 </div>
+            </div>
+
+            {/* Reading History */}
+            <div className="px-4 mt-4">
+                <ReadingHistoryWidget />
             </div>
 
             {/* About Card with Logo */}

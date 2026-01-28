@@ -14,6 +14,8 @@ export interface Post {
         tags?: string[];
         author?: string;
         readTime?: string;
+        series?: string;      // Series name
+        seriesOrder?: number; // Order in series
     };
     content: string;
 }
@@ -97,4 +99,42 @@ export function getPostsByTag(tag: string): Post[] {
     return posts.filter((post) => 
         post.frontmatter.tags?.includes(tag)
     );
+}
+
+export interface SeriesInfo {
+    name: string;
+    posts: {
+        slug: string;
+        title: string;
+        order: number;
+    }[];
+}
+
+export function getSeriesByName(seriesName: string): SeriesInfo | null {
+    const posts = getSortedPostsData();
+    const seriesPosts = posts
+        .filter((post) => post.frontmatter.series === seriesName)
+        .map((post) => ({
+            slug: post.slug,
+            title: post.frontmatter.title,
+            order: post.frontmatter.seriesOrder || 0,
+        }))
+        .sort((a, b) => a.order - b.order);
+
+    if (seriesPosts.length === 0) return null;
+
+    return {
+        name: seriesName,
+        posts: seriesPosts,
+    };
+}
+
+export function getAdjacentPosts(currentSlug: string): { prev: Post | null; next: Post | null } {
+    const posts = getSortedPostsData();
+    const currentIndex = posts.findIndex((post) => post.slug === currentSlug);
+
+    return {
+        prev: currentIndex < posts.length - 1 ? posts[currentIndex + 1] : null,
+        next: currentIndex > 0 ? posts[currentIndex - 1] : null,
+    };
 }

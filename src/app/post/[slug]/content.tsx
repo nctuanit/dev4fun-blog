@@ -4,6 +4,10 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Clock, Calendar, ArrowLeft } from 'lucide-react';
 import TableOfContents, { TOCItem } from '@/components/post/TableOfContents';
+import ReadingProgressBar from '@/components/post/ReadingProgressBar';
+import CopyCodeButton from '@/components/post/CopyCodeButton';
+import ShareButtons from '@/components/post/ShareButtons';
+import { ReadingTracker } from '@/components/post/ReadingHistory';
 
 interface PostFrontmatter {
     title: string;
@@ -17,6 +21,7 @@ interface PostFrontmatter {
 interface PostContentProps {
     frontmatter: PostFrontmatter;
     headings: TOCItem[];
+    slug: string;
     children: React.ReactNode;
 }
 
@@ -29,9 +34,18 @@ function formatDateOnly(dateString: string) {
     });
 }
 
-export default function PostContent({ frontmatter, headings, children }: PostContentProps) {
+export default function PostContent({ frontmatter, headings, slug, children }: PostContentProps) {
     return (
         <div>
+            {/* Reading Progress Bar */}
+            <ReadingProgressBar />
+            
+            {/* Copy Code Button - auto attaches to code blocks */}
+            <CopyCodeButton />
+            
+            {/* Reading Tracker - saves progress to localStorage */}
+            <ReadingTracker slug={slug} title={frontmatter.title} />
+
             {/* Back button */}
             <Link 
                 href="/" 
@@ -102,6 +116,11 @@ export default function PostContent({ frontmatter, headings, children }: PostCon
 
                     {/* Content */}
                     {children}
+
+                    {/* Share Buttons */}
+                    <div className="mt-8 pt-6 border-t border-border/50">
+                        <ShareButtons title={frontmatter.title} slug={slug} />
+                    </div>
                 </div>
             </article>
         </div>

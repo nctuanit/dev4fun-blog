@@ -52,7 +52,7 @@ export default async function PostPage(props: { params: Promise<{ slug: string }
     const headings = extractHeadings(post.content);
 
     return (
-        <PostContent frontmatter={post.frontmatter} headings={headings}>
+        <PostContent frontmatter={post.frontmatter} headings={headings} slug={post.slug}>
             <MDXContent source={post.content} />
         </PostContent>
     );
