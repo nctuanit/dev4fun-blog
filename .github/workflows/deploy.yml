@@ -1,7 +1,10 @@
 name: Deploy to Server
 
 on:
-  push:
+  workflow_run:
+    workflows: ["CI"]
+    types:
+      - completed
     branches: [main]
   workflow_dispatch:
 
@@ -9,6 +12,8 @@ jobs:
   deploy:
     name: Deploy to Server
     runs-on: ubuntu-latest
+    # Only deploy if CI succeeded (or manual trigger)
+    if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
     environment:
       name: production
       url: ${{ vars.PRODUCTION_URL }}
@@ -54,3 +59,13 @@ jobs:
             pm2 save
             
             echo "✅ Deployment completed!"
+
+  notify-failure:
+    name: Notify CI Failed
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'failure' }}
+    steps:
+      - name: CI Failed - Skip Deploy
+        run: |
+          echo "❌ CI failed, deployment skipped"
+          exit 1
