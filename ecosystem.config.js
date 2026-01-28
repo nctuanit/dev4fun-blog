@@ -3,7 +3,7 @@ module.exports = {
     {
       name: 'dev4fun-blog',
       script: 'server.js',
-      cwd: '/var/www/dev4fun-blog/deploy',
+      cwd: '/home/deploys/dev4fun-blog/.next/standalone',
       instances: 'max',
       exec_mode: 'cluster',
       env: {
