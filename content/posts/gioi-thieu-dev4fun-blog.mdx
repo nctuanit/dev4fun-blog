@@ -1,0 +1,407 @@
+---
+title: 'Giới Thiệu Dev4Fun Blog - Nơi Chia Sẻ Đam Mê Lập Trình'
+date: '2026-01-28'
+description: 'Chào mừng bạn đến với Dev4Fun Blog! Đây là nơi chia sẻ kiến thức, kinh nghiệm và đam mê về lập trình, công nghệ và phát triển phần mềm.'
+tags: ['introduction', 'dev4fun', 'blog', 'vietnamese']
+author: 'Dev4Fun Team'
+readTime: '8'
+coverImage: 'https://picsum.photos/seed/dev4fun/1000/420'
+---
+
+# Chào Mừng Đến Với Dev4Fun Blog! 🚀
+
+Xin chào các bạn developer! Rất vui được giới thiệu đến các bạn **Dev4Fun Blog** - một nơi để chia sẻ đam mê lập trình và công nghệ.
+
+## Mục Lục
+
+- [Dev4Fun Blog Là Gì?](#dev4fun-blog-là-gì)
+- [Công Nghệ Sử Dụng](#công-nghệ-sử-dụng)
+  - [Tại Sao Chọn Next.js?](#tại-sao-chọn-nextjs)
+- [Các Chủ Đề Sẽ Được Chia Sẻ](#các-chủ-đề-sẽ-được-chia-sẻ)
+- [Markdown Features Demo](#markdown-features-demo)
+  - [Task Lists](#task-lists-danh-sách-công-việc)
+  - [Strikethrough & Formatting](#strikethrough--formatting)
+  - [Blockquotes](#blockquotes)
+  - [Nested Lists](#nested-lists)
+- [Code Examples](#code-examples)
+  - [JavaScript/TypeScript](#javascripttypescript)
+  - [Python](#python)
+  - [Bash/Shell](#bashshell)
+  - [CSS](#css)
+  - [JSON](#json)
+- [Math Equations](#math-equations-công-thức-toán-học)
+  - [Inline Math](#inline-math)
+  - [Block Math](#block-math)
+- [Keyboard Shortcuts](#keyboard-shortcuts)
+- [Links & Images](#links--images)
+- [Tính Năng Nổi Bật](#tính-năng-nổi-bật)
+- [Abbreviations & Footnotes](#abbreviations--footnotes)
+- [Lời Kết](#lời-kết)
+
+---
+
+## Dev4Fun Blog Là Gì?
+
+Dev4Fun Blog được xây dựng với mục tiêu tạo ra một không gian để:
+
+- 📚 **Chia sẻ kiến thức** về các công nghệ mới nhất
+- 💡 **Hướng dẫn từng bước** các dự án thực tế
+- 🔧 **Tips & Tricks** giúp code hiệu quả hơn
+- 🌟 **Cộng đồng** developer Việt Nam kết nối và học hỏi
+
+---
+
+## Công Nghệ Sử Dụng
+
+Blog này được xây dựng bằng các công nghệ hiện đại:
+
+```typescript
+const techStack = {
+  framework: 'Next.js 15',
+  styling: 'Tailwind CSS',
+  content: 'MDX',
+  language: 'TypeScript',
+  deployment: 'Vercel'
+};
+
+// Function example với TypeScript generics
+function createBlog<T extends { title: string }>(config: T): T & { createdAt: Date } {
+  return {
+    ...config,
+    createdAt: new Date()
+  };
+}
+```
+
+### Tại Sao Chọn Next.js?
+
+Next.js mang lại nhiều lợi ích tuyệt vời:
+
+1. **App Router** - Routing hiện đại và mạnh mẽ
+2. **Server Components** - Tối ưu performance
+3. **Static Generation** - Tốc độ load nhanh chóng
+4. **SEO Friendly** - Tối ưu cho search engine
+
+#### Nested Heading Level 4
+
+Đây là ví dụ về heading cấp 4, thường dùng cho các sub-section nhỏ hơn.
+
+---
+
+## Các Chủ Đề Sẽ Được Chia Sẻ
+
+| Chủ Đề | Mô Tả | Độ Khó |
+|--------|-------|--------|
+| Frontend | React, Vue, Angular, CSS | ⭐⭐ |
+| Backend | Node.js, Python, Go | ⭐⭐⭐ |
+| DevOps | Docker, Kubernetes, CI/CD | ⭐⭐⭐⭐ |
+| Database | PostgreSQL, MongoDB, Redis | ⭐⭐⭐ |
+| AI/ML | Machine Learning, Deep Learning | ⭐⭐⭐⭐⭐ |
+
+---
+
+## Markdown Features Demo
+
+### Task Lists (Danh sách công việc)
+
+- [x] Thiết kế giao diện blog
+- [x] Implement dark mode
+- [x] Thêm RSS feed
+- [ ] Viết thêm nhiều bài viết
+- [ ] Thêm tính năng comment
+
+### Strikethrough & Formatting
+
+Bạn có thể sử dụng ~~strikethrough~~ để gạch bỏ text không còn phù hợp.
+
+Kết hợp **bold**, *italic*, và ***bold italic*** trong cùng một câu.
+
+Hoặc sử dụng `inline code` để highlight các đoạn code ngắn như `npm install` hay `git commit`.
+
+### Blockquotes
+
+> "Code is like humor. When you have to explain it, it's bad." 
+> — Cory House
+
+Blockquote có thể chứa nhiều dòng:
+
+> **Pro tip:** Khi viết code, hãy luôn nghĩ đến người sẽ đọc code của bạn.
+> 
+> Có thể đó chính là bạn trong 6 tháng tới, và bạn sẽ không nhớ gì cả! 😅
+
+### Nested Lists
+
+1. **Frontend Technologies**
+   - React
+     - Next.js
+     - Remix
+   - Vue
+     - Nuxt.js
+   - Angular
+
+2. **Backend Technologies**
+   - Node.js
+   - Python
+   - Go
+
+3. **DevOps Tools**
+   - Docker
+   - Kubernetes
+
+---
+
+## Code Examples
+
+### JavaScript/TypeScript
+
+```typescript
+import { useState, useEffect } from 'react';
+
+// Custom hook với TypeScript
+function useLocalStorage<T>(key: string, initialValue: T) {
+  const [storedValue, setStoredValue] = useState<T>(() => {
+    if (typeof window === 'undefined') {
+      return initialValue;
+    }
+    try {
+      const item = window.localStorage.getItem(key);
+      return item ? JSON.parse(item) : initialValue;
+    } catch (error) {
+      console.error(error);
+      return initialValue;
+    }
+  });
+
+  const setValue = (value: T | ((val: T) => T)) => {
+    try {
+      const valueToStore = value instanceof Function 
+        ? value(storedValue) 
+        : value;
+      setStoredValue(valueToStore);
+      if (typeof window !== 'undefined') {
+        window.localStorage.setItem(key, JSON.stringify(valueToStore));
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  return [storedValue, setValue] as const;
+}
+
+export default useLocalStorage;
+```
+
+### Python
+
+```python
+from typing import List, Dict, Optional
+import asyncio
+
+class BlogPost:
+    """A class representing a blog post."""
+    
+    def __init__(self, title: str, content: str, tags: List[str] = None):
+        self.title = title
+        self.content = content
+        self.tags = tags or []
+        self.views = 0
+    
+    async def fetch_comments(self) -> List[Dict]:
+        """Fetch comments asynchronously."""
+        await asyncio.sleep(0.1)  # Simulate API call
+        return [
+            {"user": "Alice", "text": "Great post!"},
+            {"user": "Bob", "text": "Very helpful, thanks!"}
+        ]
+    
+    def __repr__(self) -> str:
+        return f"BlogPost(title='{self.title}', views={self.views})"
+
+# Usage
+post = BlogPost("Hello World", "Welcome to my blog!", ["python", "tutorial"])
+print(post)
+```
+
+### Bash/Shell
+
+```bash
+#!/bin/bash
+
+# Deploy script for Next.js application
+echo "🚀 Starting deployment..."
+
+# Build the application
+npm run build
+
+# Run tests
+npm test
+
+# Deploy to Vercel
+if [ $? -eq 0 ]; then
+    vercel --prod
+    echo "✅ Deployment successful!"
+else
+    echo "❌ Tests failed. Deployment aborted."
+    exit 1
+fi
+```
+
+### CSS
+
+```css
+/* Modern card component styles */
+.card {
+  --card-radius: 1rem;
+  --card-padding: 1.5rem;
+  
+  background: var(--background);
+  border-radius: var(--card-radius);
+  padding: var(--card-padding);
+  box-shadow: 
+    0 1px 3px rgba(0, 0, 0, 0.1),
+    0 1px 2px rgba(0, 0, 0, 0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+    0 10px 25px rgba(0, 0, 0, 0.1),
+    0 6px 10px rgba(0, 0, 0, 0.08);
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .card {
+    background: var(--background-dark);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  }
+}
+```
+
+### JSON
+
+```json
+{
+  "name": "dev4fun-blog",
+  "version": "1.0.0",
+  "description": "A modern blog built with Next.js",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "next": "^15.0.0",
+    "react": "^19.0.0",
+    "tailwindcss": "^3.4.0"
+  }
+}
+```
+
+---
+
+## Math Equations (Công thức Toán học)
+
+Blog hỗ trợ cả **inline math** và **block math** với KaTeX.
+
+### Inline Math
+
+Công thức năng lượng nổi tiếng của Einstein: $E = mc^2$
+
+Định lý Pytago: $a^2 + b^2 = c^2$
+
+### Block Math
+
+Công thức tính tổng:
+
+$$
+\sum_{i=1}^{n} i = \frac{n(n+1)}{2}
+$$
+
+Phân phối Gaussian (Normal Distribution):
+
+$$
+f(x) = \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2}
+$$
+
+Ma trận rotation 2D:
+
+$$
+R(\theta) = \begin{pmatrix}
+\cos\theta & -\sin\theta \\
+\sin\theta & \cos\theta
+\end{pmatrix}
+$$
+
+---
+
+## Keyboard Shortcuts
+
+Một số phím tắt hữu ích khi code:
+
+- <kbd>Ctrl</kbd> + <kbd>C</kbd> - Copy
+- <kbd>Ctrl</kbd> + <kbd>V</kbd> - Paste
+- <kbd>Ctrl</kbd> + <kbd>Z</kbd> - Undo
+- <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd> - Command Palette (VS Code)
+
+---
+
+## Links & Images
+
+### External Links
+
+Một số resources hữu ích:
+- [Next.js Documentation](https://nextjs.org/docs)
+- [Tailwind CSS](https://tailwindcss.com)
+- [TypeScript Handbook](https://www.typescriptlang.org/docs/handbook/)
+
+### Images
+
+![Dev4Fun Blog Banner](https://picsum.photos/seed/banner/800/400)
+
+---
+
+## Tính Năng Nổi Bật
+
+### 🎨 Giao Diện Đẹp Mắt
+
+Blog được thiết kế với giao diện modern, tối ưu trải nghiệm đọc trên mọi thiết bị.
+
+### 📱 Responsive Design
+
+Hoạt động mượt mà trên desktop, tablet và mobile.
+
+### 🌙 Dark Mode
+
+Hỗ trợ chế độ tối, bảo vệ mắt khi code đêm khuya.
+
+### ⚡ Tốc Độ Nhanh
+
+Được tối ưu để load nhanh, giúp bạn tập trung vào nội dung.
+
+---
+
+## Abbreviations & Footnotes
+
+HTML[^1] là ngôn ngữ đánh dấu chuẩn cho trang web. Kết hợp với CSS và JS, bạn có thể xây dựng các ứng dụng web hiện đại.
+
+API[^2] cho phép các ứng dụng giao tiếp với nhau.
+
+[^1]: HyperText Markup Language - Ngôn ngữ đánh dấu siêu văn bản
+[^2]: Application Programming Interface - Giao diện lập trình ứng dụng
+
+---
+
+## Lời Kết
+
+Cảm ơn bạn đã ghé thăm **Dev4Fun Blog**! Hy vọng những bài viết tại đây sẽ mang lại giá trị cho bạn trong hành trình học tập và phát triển.
+
+> "The only way to do great work is to love what you do." 
+> — Steve Jobs
+
+Hãy theo dõi blog để cập nhật những bài viết mới nhất. Nếu có bất kỳ góp ý nào, đừng ngần ngại liên hệ với chúng tôi!
+
+**Happy Coding!** 💻✨
