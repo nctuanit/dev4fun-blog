@@ -53,7 +53,7 @@ jobs:
               pm2 restart dev4fun-blog
             else
               cd $APP_DIR/.next/standalone
-              pm2 start "npm run dev" --name dev4fun-blog --env PORT=3101
+              pm2 start "npm run start" --name dev4fun-blog --env PORT=3101
             fi
             
             pm2 save
