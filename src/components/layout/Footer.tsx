@@ -18,7 +18,6 @@ const FOOTER_LINKS = [
     {
         title: 'Tài nguyên',
         links: [
-            { label: 'RSS Feed', href: '/rss.xml' },
             { label: 'Sitemap', href: '/sitemap.xml' },
         ],
     },
