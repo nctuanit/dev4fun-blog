@@ -43,7 +43,7 @@ jobs:
             git reset --hard origin/main
             
             # Install dependencies
-            bun install --frozen-lockfile
+            bun install 
             
             # Build Next.js
             bun run build
