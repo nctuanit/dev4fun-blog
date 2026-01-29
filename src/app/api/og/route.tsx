@@ -110,7 +110,7 @@ export async function GET(request: NextRequest) {
         );
     } catch {
 
-        return new Response(`Failed to generate the image`, {
+        return new Response(`Failed to generate `, {
             status: 500,
         });
     }
