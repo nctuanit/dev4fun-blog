@@ -1,6 +1,6 @@
+import { Tag, TrendingUp, Github } from 'lucide-react';
+import { SITE_CONFIG, PAGINATION, SOCIAL_LINKS } from '@/lib/constants';
 import Link from 'next/link';
-import { Tag, TrendingUp } from 'lucide-react';
-import { SITE_CONFIG, PAGINATION } from '@/lib/constants';
 
 interface SidebarTagInfo {
     name: string;
@@ -82,6 +82,29 @@ export function RightSidebar({ tags, recentPosts }: RightSidebarProps) {
                     </div>
                 </div>
             )}
+            {/* Source Code */}
+            <div className="bg-card border-border/50 overflow-hidden rounded-2xl border shadow-sm transition-shadow hover:shadow-md">
+                <div className="border-border/50 border-b bg-gradient-to-r from-gray-500/5 to-slate-500/5 p-4">
+                    <h3 className="flex items-center gap-2 font-bold">
+                        <Github className="h-4 w-4 text-slate-500" />
+                        Mã nguồn
+                    </h3>
+                </div>
+                <div className="p-4">
+                    <p className="text-muted-foreground mb-3 text-sm">
+                        Blog được open source trên GitHub. Hãy cho mình 1 ⭐️ nếu bạn thấy hữu ích nhé!
+                    </p>
+                    <Link
+                        href={`${SOCIAL_LINKS.github}/dev4fun-blog`}
+                        target="_blank"
+                        className="bg-primary text-primary-foreground hover:bg-primary/90 flex w-full items-center justify-center gap-2 rounded-lg px-4 py-2 text-sm font-medium transition-colors"
+                    >
+                        <Github className="h-4 w-4" />
+                        Xem trên GitHub
+                    </Link>
+                </div>
+            </div>
+
             {/* About */}
             <div className="bg-card border-border/50 rounded-2xl border p-5 shadow-sm">
                 <h3 className="mb-3 font-bold">Về {SITE_CONFIG.title}</h3>

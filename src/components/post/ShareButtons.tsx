@@ -67,7 +67,7 @@ export default function ShareButtons({ title }: ShareButtonsProps) {
             <button
                 onClick={copyToClipboard}
                 className="bg-secondary/50 hover:bg-secondary text-muted-foreground hover:text-primary rounded-lg p-2 transition-colors"
-                title={copied ? 'Đã copy!' : 'Copy link'}
+                title={copied ? 'Đã copy!' : 'Sao chép liên kết'}
             >
                 {copied ? (
                     <Check className="h-4 w-4 text-green-500" />

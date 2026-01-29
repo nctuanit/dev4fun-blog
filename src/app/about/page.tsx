@@ -81,7 +81,7 @@ export default function AboutPage() {
     return (
         <div className="text-foreground">
             {/* Hero Section */}
-            <div className="border-border/50 relative mb-6 overflow-hidden rounded-2xl border bg-gradient-to-br from-[#2d4a6f]/10 via-[#f5a623]/5 to-transparent p-5 sm:mb-8 sm:rounded-3xl sm:p-8 md:p-10 lg:mb-10 lg:p-12">
+            <div className="border-border/50 relative mb-4 overflow-hidden rounded-2xl border bg-gradient-to-br from-[#2d4a6f]/10 via-[#f5a623]/5 to-transparent p-4 sm:mb-6 sm:rounded-3xl sm:p-6 md:p-8 lg:mb-8">
                 {/* Background decoration */}
                 <div className="absolute top-0 right-0 -z-10 h-48 w-48 rounded-full bg-[#f5a623]/10 blur-3xl sm:h-64 sm:w-64"></div>
                 <div className="absolute bottom-0 left-0 -z-10 h-36 w-36 rounded-full bg-[#2d4a6f]/10 blur-3xl sm:h-48 sm:w-48"></div>
@@ -113,7 +113,7 @@ export default function AboutPage() {
             </div>
 
             {/* Stats */}
-            <div className="mb-6 grid grid-cols-3 gap-2 sm:mb-8 sm:gap-3 md:gap-4 lg:mb-10">
+            <div className="mb-4 grid grid-cols-3 gap-2 sm:mb-6 sm:gap-3 md:gap-4 lg:mb-8">
                 {stats.map((stat) => (
                     <div
                         key={stat.label}
@@ -135,7 +135,7 @@ export default function AboutPage() {
             </div>
 
             {/* About Author */}
-            <div className="bg-card border-border/50 mb-4 rounded-xl border p-4 sm:mb-5 sm:rounded-2xl sm:p-6 md:mb-6 md:p-8">
+            <div className="bg-card border-border/50 mb-4 rounded-xl border p-4 sm:mb-5 sm:rounded-2xl sm:p-6 md:mb-6 md:p-6">
                 <div className="mb-3 flex items-center gap-2 sm:mb-4 sm:gap-3 md:mb-5">
                     <div className="from-primary/20 flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br to-purple-500/20 sm:h-10 sm:w-10 sm:rounded-xl">
                         <Heart className="text-primary h-4 w-4 sm:h-5 sm:w-5" />
@@ -160,7 +160,7 @@ export default function AboutPage() {
             {/* Mission & Tech Stack Grid */}
             <div className="mb-4 grid gap-4 sm:mb-5 sm:gap-5 md:mb-6 md:grid-cols-2 md:gap-6">
                 {/* Mission */}
-                <div className="bg-card border-border/50 rounded-xl border p-4 sm:rounded-2xl sm:p-6 md:p-8">
+                <div className="bg-card border-border/50 rounded-xl border p-4 sm:rounded-2xl sm:p-6 md:p-6">
                     <div className="mb-3 flex items-center gap-2 sm:mb-4 sm:gap-3 md:mb-5">
                         <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-green-500/20 to-emerald-500/20 sm:h-10 sm:w-10 sm:rounded-xl">
                             <Rocket className="h-4 w-4 text-green-500 sm:h-5 sm:w-5" />
@@ -188,7 +188,7 @@ export default function AboutPage() {
                 </div>
 
                 {/* Tech Stack */}
-                <div className="bg-card border-border/50 rounded-xl border p-4 sm:rounded-2xl sm:p-6 md:p-8">
+                <div className="bg-card border-border/50 rounded-xl border p-4 sm:rounded-2xl sm:p-6 md:p-6">
                     <div className="mb-3 flex items-center gap-2 sm:mb-4 sm:gap-3 md:mb-5">
                         <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-cyan-500/20 to-blue-500/20 sm:h-10 sm:w-10 sm:rounded-xl">
                             <Code2 className="h-4 w-4 text-cyan-500 sm:h-5 sm:w-5" />
@@ -209,7 +209,7 @@ export default function AboutPage() {
             </div>
 
             {/* Social Links */}
-            <div className="bg-card border-border/50 mb-4 rounded-xl border p-4 sm:mb-5 sm:rounded-2xl sm:p-6 md:mb-6 md:p-8">
+            <div className="bg-card border-border/50 mb-4 rounded-xl border p-4 sm:mb-5 sm:rounded-2xl sm:p-6 md:mb-6 md:p-6">
                 <div className="mb-3 flex items-center gap-2 sm:mb-4 sm:gap-3 md:mb-5">
                     <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-purple-500/20 to-pink-500/20 sm:h-10 sm:w-10 sm:rounded-xl">
                         <Users className="h-4 w-4 text-purple-500 sm:h-5 sm:w-5" />
@@ -235,7 +235,7 @@ export default function AboutPage() {
             </div>
 
             {/* CTA */}
-            <div className="relative overflow-hidden rounded-xl border border-[#2d4a6f]/20 bg-gradient-to-br from-[#2d4a6f]/10 via-[#f5a623]/10 to-[#2d4a6f]/5 p-5 text-center sm:rounded-2xl sm:p-6 md:p-8 lg:p-10">
+            <div className="relative overflow-hidden rounded-xl border border-[#2d4a6f]/20 bg-gradient-to-br from-[#2d4a6f]/10 via-[#f5a623]/10 to-[#2d4a6f]/5 p-4 text-center sm:rounded-2xl sm:p-6 md:p-8 lg:p-8">
                 <div className="absolute top-0 left-1/2 -z-10 h-24 w-64 -translate-x-1/2 rounded-full bg-[#f5a623]/20 blur-3xl sm:h-28 sm:w-80 md:h-32 md:w-96"></div>
 
                 <h3 className="mb-2 text-lg font-bold sm:mb-3 sm:text-xl md:text-2xl">

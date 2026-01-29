@@ -2,13 +2,15 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { Home, Tag, Github, Facebook, BookOpen } from 'lucide-react';
+import { Home, Tag, Github, Facebook, BookOpen, GitBranch, Briefcase } from 'lucide-react';
 import { SITE_CONFIG, SOCIAL_LINKS, THEME_COLORS } from '@/lib/constants';
 import { usePathname } from 'next/navigation';
 
 const NAV_ITEMS = [
     { icon: Home, label: 'Trang chủ', href: '/' },
     { icon: Tag, label: 'Tags', href: '/tags' },
+    { icon: GitBranch, label: 'Mã nguồn mở', href: '/open-source' },
+    { icon: Briefcase, label: 'Dự án', href: '/projects' },
     { icon: BookOpen, label: 'Về blog', href: '/about' },
 ];
 
@@ -38,11 +40,10 @@ export function LeftSidebar() {
                         <Link
                             key={item.label}
                             href={item.href}
-                            className={`group flex items-center gap-3 rounded-xl px-4 py-2.5 text-sm font-medium transition-all duration-200 ${
-                                active
-                                    ? 'bg-primary/10 text-primary'
-                                    : 'text-muted-foreground hover:bg-primary/5 hover:text-foreground'
-                            }`}
+                            className={`group flex items-center gap-3 rounded-xl px-4 py-2.5 text-sm font-medium transition-all duration-200 ${active
+                                ? 'bg-primary/10 text-primary'
+                                : 'text-muted-foreground hover:bg-primary/5 hover:text-foreground'
+                                }`}
                         >
                             <item.icon
                                 className={`h-5 w-5 transition-transform duration-200 group-hover:scale-110 ${active ? 'text-primary' : ''}`}

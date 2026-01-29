@@ -34,7 +34,7 @@ function formatDateOnly(dateString: string) {
     });
 }
 
-export default function PostContent({ frontmatter, headings, slug, children }: PostContentProps) {
+export default function PostContent({ frontmatter, headings, children }: PostContentProps) {
     return (
         <div>
             {/* Reading Progress Bar */}

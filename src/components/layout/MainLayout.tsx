@@ -31,7 +31,7 @@ export function MainLayout({ children, tags, recentPosts }: MainLayoutProps) {
 
             <Header />
 
-            <div className="mx-auto w-full max-w-7xl flex-1 px-4 pt-20 lg:px-6">
+            <div className="mx-auto w-full max-w-7xl flex-1 px-4 pt-16 lg:px-6">
                 <MainContent tags={tags} recentPosts={recentPosts}>
                     {children}
                 </MainContent>

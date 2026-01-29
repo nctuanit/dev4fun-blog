@@ -1,10 +1,12 @@
 # Dev4Fun Blog
 
-Blog cá nhân được xây dựng với Next.js 15, MDX và Tailwind CSS.
+Blog cá nhân được xây dựng với Next.js 16, MDX và Tailwind CSS.
 
 ## Tech Stack
 
-- **Framework:** Next.js 15 (App Router)
+- **Framework:** Next.js 16 (App Router)
+- **Core:** React 19
+- **Database:** PostgreSQL + Drizzle ORM
 - **Styling:** Tailwind CSS 4
 - **Content:** MDX với remark/rehype plugins
 - **Package Manager:** Bun
@@ -13,6 +15,7 @@ Blog cá nhân được xây dựng với Next.js 15, MDX và Tailwind CSS.
 ## Tính năng
 
 - Dark/Light mode
+- Bình luận bài viết (Giscus)
 - MDX với syntax highlighting, math equations (KaTeX), GFM
 - Tự động tạo mục lục từ headings
 - Tìm kiếm bài viết
@@ -139,6 +142,11 @@ pm2 logs dev4fun-blog
 # Restart
 pm2 restart dev4fun-blog
 ```
+
+## Chia sẻ Source Code
+
+Mã nguồn của blog này được chia sẻ công khai nhằm mục đích tham khảo và học tập.
+Nếu bạn thấy dự án này hữu ích, hãy dành tặng mình 1 ⭐️ trên GitHub nhé!
 
 ## License
 

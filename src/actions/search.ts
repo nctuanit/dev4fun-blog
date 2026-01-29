@@ -33,7 +33,6 @@ export async function searchPosts(query: string): Promise<SearchResult[]> {
                 titleMatch.includes(word) || descMatch.includes(word) || tagsMatch.includes(word)
         );
     });
-
     // Sort by relevance (title matches first)
     filtered.sort((a, b) => {
         const aTitle = a.frontmatter.title.toLowerCase();
@@ -45,7 +44,6 @@ export async function searchPosts(query: string): Promise<SearchResult[]> {
         if (!aHasTitle && bHasTitle) return 1;
         return 0;
     });
-
     // Return top 5 results with only necessary fields
     return filtered.slice(0, 5).map((post) => ({
         slug: post.slug,
