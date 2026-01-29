@@ -7,7 +7,6 @@ import TableOfContents, { TOCItem } from '@/components/post/TableOfContents';
 import ReadingProgressBar from '@/components/post/ReadingProgressBar';
 import CopyCodeButton from '@/components/post/CopyCodeButton';
 import ShareButtons from '@/components/post/ShareButtons';
-import { ReadingTracker } from '@/components/post/ReadingHistory';
 import Comments from '@/components/post/Comments';
 
 interface PostFrontmatter {
@@ -118,7 +117,7 @@ export default function PostContent({ frontmatter, headings, slug, children }: P
 
                     {/* Share Buttons */}
                     <div className="mt-8 pt-6 border-t border-border/50">
-                        <ShareButtons title={frontmatter.title} slug={slug} />
+                        <ShareButtons title={frontmatter.title} />
                     </div>
 
                     {/* Comments */}

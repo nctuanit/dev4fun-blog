@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect } from 'react';
-import { Check, Copy } from 'lucide-react';
 
 export default function CopyCodeButton() {
     useEffect(() => {
@@ -25,12 +24,12 @@ export default function CopyCodeButton() {
 
             button.addEventListener('click', async () => {
                 const code = pre.querySelector('code')?.textContent || pre.textContent || '';
-                
+
                 try {
                     await navigator.clipboard.writeText(code);
                     button.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-green-500"><polyline points="20 6 9 17 4 12"/></svg>`;
                     button.title = 'Copied!';
-                    
+
                     setTimeout(() => {
                         button.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>`;
                         button.title = 'Copy code';

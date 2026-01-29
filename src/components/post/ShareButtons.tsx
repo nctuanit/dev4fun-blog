@@ -1,17 +1,15 @@
 'use client';
 
 import { useState } from 'react';
-import { Share2, Facebook, Twitter, Linkedin, Link2, Check } from 'lucide-react';
+import { Facebook, Twitter, Linkedin, Link2, Check } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 
 interface ShareButtonsProps {
     title: string;
-    slug: string;
 }
 
-export default function ShareButtons({ title, slug }: ShareButtonsProps) {
+export default function ShareButtons({ title }: ShareButtonsProps) {
     const [copied, setCopied] = useState(false);
-    const [isOpen, setIsOpen] = useState(false);
     const path = usePathname();
     const url = typeof window !== 'undefined'
         ? `${window.location.origin}${path}`

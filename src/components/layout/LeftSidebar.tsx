@@ -5,7 +5,6 @@ import Image from 'next/image';
 import { Home, Tag, Github, Facebook, BookOpen } from 'lucide-react';
 import { SITE_CONFIG, SOCIAL_LINKS, THEME_COLORS } from '@/lib/constants';
 import { usePathname } from 'next/navigation';
-import ReadingHistoryWidget from '@/components/post/ReadingHistory';
 
 const NAV_ITEMS = [
     { icon: Home, label: 'Trang chủ', href: '/' },
@@ -39,11 +38,10 @@ export function LeftSidebar() {
                         <Link
                             key={item.label}
                             href={item.href}
-                            className={`group flex items-center gap-3 px-4 py-2.5 text-sm font-medium rounded-xl transition-all duration-200 ${
-                                active
-                                    ? 'bg-primary/10 text-primary' 
-                                    : 'text-muted-foreground hover:bg-primary/5 hover:text-foreground'
-                            }`}
+                            className={`group flex items-center gap-3 px-4 py-2.5 text-sm font-medium rounded-xl transition-all duration-200 ${active
+                                ? 'bg-primary/10 text-primary'
+                                : 'text-muted-foreground hover:bg-primary/5 hover:text-foreground'
+                                }`}
                         >
                             <item.icon className={`w-5 h-5 transition-transform duration-200 group-hover:scale-110 ${active ? 'text-primary' : ''}`} />
                             <span>{item.label}</span>
@@ -60,7 +58,7 @@ export function LeftSidebar() {
                 <div className="mb-3 font-semibold text-xs uppercase tracking-wider text-muted-foreground">Kết nối</div>
                 <div className="flex gap-3">
                     {SIDEBAR_SOCIAL_LINKS.map((social) => (
-                        <Link 
+                        <Link
                             key={social.label}
                             href={social.href}
                             className="w-9 h-9 rounded-xl bg-secondary hover:bg-primary/10 flex items-center justify-center text-muted-foreground hover:text-primary transition-all hover:scale-110"
@@ -72,10 +70,6 @@ export function LeftSidebar() {
                 </div>
             </div>
 
-            {/* Reading History */}
-            <div className="px-4 mt-4">
-                <ReadingHistoryWidget />
-            </div>
 
             {/* About Card with Logo */}
             <div className={`mt-6 mx-2 p-4 rounded-2xl bg-gradient-to-br ${THEME_COLORS.gradients.card} border border-[${THEME_COLORS.primary.navy}]/20`}>

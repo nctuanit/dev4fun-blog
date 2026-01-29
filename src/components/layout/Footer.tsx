@@ -1,5 +1,5 @@
 'use client'
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Github, Facebook, Mail, Heart } from 'lucide-react';
@@ -25,11 +25,6 @@ const FOOTER_LINKS = [
 ];
 
 export function Footer() {
-    const [currentYear, setCurrentYear] = useState(2025);
-
-    useEffect(() => {
-        setCurrentYear(new Date().getFullYear());
-    }, []);
 
     return (
         <footer className="border-t border-border/50 bg-card/30 backdrop-blur-sm mt-10 sm:mt-12 lg:mt-16">
@@ -93,7 +88,7 @@ export function Footer() {
                 {/* Bottom Bar */}
                 <div className="py-4 sm:py-5 lg:py-6 border-t border-border/50 flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4">
                     <p className="text-xs sm:text-sm text-muted-foreground flex items-center gap-1">
-                        © <span suppressHydrationWarning>{currentYear}</span> {SITE_CONFIG.name}. Made with
+                        © <span suppressHydrationWarning>{2026}</span> {SITE_CONFIG.name}. Made with
                         <Heart className="w-3 h-3 sm:w-4 sm:h-4 text-red-500 fill-red-500 inline mx-0.5 sm:mx-1" />
                         in Vietnam
                     </p>

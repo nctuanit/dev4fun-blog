@@ -1,15 +1,18 @@
 import { ImageResponse } from 'next/og';
+import { NextRequest } from 'next/server';
 
 
 
-export async function GET(request: Request) {
+
+
+export async function GET(request: NextRequest) {
     try {
-        const { searchParams } = new URL(request.url);
+        const { searchParams } = request.nextUrl || {};
 
         // ?title=<title>
-        const hasTitle = searchParams.has('title');
+        const hasTitle = searchParams?.has('title');
         const title = hasTitle
-            ? searchParams.get('title')?.slice(0, 100)
+            ? searchParams?.get('title')?.slice(0, 100)
             : 'Dev4Fun Blog';
 
         return new ImageResponse(
@@ -105,8 +108,8 @@ export async function GET(request: Request) {
                 height: 630,
             }
         );
-    } catch (e: any) {
-        console.log(`${e.message}`);
+    } catch {
+
         return new Response(`Failed to generate the image`, {
             status: 500,
         });
