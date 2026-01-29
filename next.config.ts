@@ -1,7 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  cacheComponents:true,
+  cacheComponents: true,
   images: {
     remotePatterns: [
       {
@@ -12,6 +12,10 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "dev4fun.vn",
       },
+      {
+        protocol: "https",
+        hostname: "pub-a893aee04799448e98702e8da7edff53.r2.dev",
+      }
     ],
   },
 };

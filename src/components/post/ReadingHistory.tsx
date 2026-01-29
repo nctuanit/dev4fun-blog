@@ -38,7 +38,7 @@ export function useReadingHistory() {
                 { ...item, timestamp: Date.now() },
                 ...filtered,
             ].slice(0, MAX_HISTORY);
-            
+
             localStorage.setItem(STORAGE_KEY, JSON.stringify(newHistory));
             return newHistory;
         });
@@ -165,7 +165,7 @@ export default function ReadingHistoryWidget() {
             {/* History modal */}
             {isOpen && (
                 <div
-                    className="fixed inset-0 bg-background/80 backdrop-blur-sm z-[100] flex items-center justify-center p-4"
+                    className="fixed inset-0 bg-background/80 backdrop-blur-sm z-[9999] flex items-center justify-center p-4"
                     onClick={() => setIsOpen(false)}
                 >
                     <div

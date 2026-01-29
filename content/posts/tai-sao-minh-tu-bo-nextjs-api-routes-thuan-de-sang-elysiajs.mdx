@@ -1,0 +1,82 @@
+---
+title: 'Tại sao mình từ bỏ Next.js API Routes thuần để sang ElysiaJS?'
+date: '2024-05-20'
+description: 'Chia sẻ kinh nghiệm sau 3 năm làm việc với Next.js và cách tối ưu hóa Backend nội bộ bằng ElysiaJS để đạt hiệu suất và Type-safety tuyệt đối.'
+tags: ['nextjs', 'api', 'elysiaJS', 'typescript', 'backend']
+author: 'TuanNC'
+readTime: '5'
+coverImage: 'https://pub-a893aee04799448e98702e8da7edff53.r2.dev/tai-sao-minh-tu-bo-nextjs-api-routes-thuan-de-sang-elysiajs.png'
+---
+
+Chào anh em, lại là mình đây. Sau khoảng 3 năm thực chiến với Next.js, từ thời Page Router cho đến App Router, mình luôn có một sự "lấn cấn" không hề nhẹ với cách quản lý API Route mặc định. 
+
+Nếu anh em đang làm project lớn, chắc chắn sẽ hiểu cảm giác thư mục `api/` biến thành một "mê cung" file-based routing. Hôm nay mình sẽ chia sẻ về cách mình "đổi gió" sang **ElysiaJS** để giải quyết triệt để vấn đề này.
+
+### Nỗi đau mang tên "Standard API Routes"
+
+Next.js làm rất tốt phần SSR/SSG, nhưng khi đóng vai trò là một Backend thực thụ, nó bộc lộ vài điểm yếu khiến DX (Developer Experience) giảm sút:
+
+1.  **File-based Routing quá rườm rà:** Muốn tạo 10 endpoints là phải có 10 folder/file `route.ts`. 
+2.  **Boilerplate lặp đi lặp lại:** Check Method (`GET`, `POST`), parse body, validate thủ công... nhìn code rất "rác".
+3.  **Mất kết nối Type-safety:** Frontend gọi API qua `fetch` thường phải định nghĩa lại Interface thủ công, rất dễ sai lệch dữ liệu.
+
+### Tại sao lại là ElysiaJS?
+
+ElysiaJS không chỉ nhanh (benchmark thuộc top đầu hệ sinh thái Bun/Node), mà cái hay nhất là nó mang lại cảm giác viết code cực kỳ "sướng".
+
+#### 1. Catch-all Route: Gom tất cả về một mối
+Thay vì phân tán, mình sử dụng pattern Catch-all của Next.js để nhường quyền điều hướng cho Elysia. Chỉ cần đúng một file `app/api/[[...slugs]]/route.ts`:
+
+```typescript
+import { Elysia, t } from 'elysia'
+
+const app = new Elysia({ prefix: '/api' })
+    .get('/ping', () => 'pong')
+    .group('/users', (app) => app
+        .get('/:id', ({ params: { id } }) => getUser(id))
+        .post('/register', ({ body }) => registerUser(body), {
+            body: t.Object({
+                username: t.String(),
+                password: t.String({ minLength: 8 })
+            })
+        })
+    )
+
+export const GET = app.handle
+export const POST = app.handle
+export const PUT = app.handle
+export const DELETE = app.handle
+```
+
+#### 2. Hệ sinh thái Plugin "tận răng"
+Đây là điểm mình cực thích. Elysia có các plugin chính chủ cực xịn giúp anh em tiết kiệm hàng giờ code:
+-   **@elysiajs/swagger:** Tự động tạo trang tài liệu API chuẩn chỉ mà không cần viết một dòng comment nào.
+-   **@elysiajs/jwt:** Xử lý Authentication với JWT siêu gọn nhẹ.
+-   **@elysiajs/cors:** Cấu hình CORS chỉ trong một dòng.
+-   **@elysiajs/server-timing:** Đo lường hiệu năng từng endpoint để tối ưu hóa.
+
+#### 3. Phép màu mang tên Eden
+Nếu anh em từng dùng tRPC thì **Eden** chính là phiên bản "lean" và linh hoạt hơn. Nó cho phép Frontend "import" toàn bộ cấu trúc API từ Backend dưới dạng Type.
+
+```typescript
+// Tại Client component
+import { treaty } from '@elysiajs/eden'
+import type { App } from '@/app/api/[[...slugs]]/route'
+
+const client = treaty<App>(window.location.origin)
+
+// Gợi ý code tận răng, sai kiểu dữ liệu là báo đỏ ngay!
+const { data } = await client.api.users.register.post({
+    username: 'tuannc',
+    password: 'securepassword'
+})
+```
+
+### Tổng kết
+
+Sau khi chuyển hướng sang cách làm này, mình nhận thấy:
+- **Tốc độ code tăng vọt:** Không còn phải tạo file liên tục hay loay hoay định nghĩa Type cho cả 2 đầu.
+- **Dễ bảo trì:** Logic tập trung, nhìn vào file router là biết hệ thống có những gì.
+- **Hiệu năng:** Tuy chạy trên Next.js (Node runtime) có thể không đạt max speed như Bun, nhưng cấu trúc của Elysia vẫn giúp giảm đáng kể overhead so với route handler truyền thống.
+
+Nếu anh em đang cảm thấy quá "ngố" với đống API routes hiện tại, hãy thử cài Elysia vào project và trải nghiệm nhé. Anh em có thể tham khảo thêm tại trang chủ [ElysiaJS](https://elysiajs.com/) để khám phá đầy đủ sức mạnh của nó. Chúc anh em code vui!

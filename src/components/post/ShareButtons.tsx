@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { Share2, Facebook, Twitter, Linkedin, Link2, Check } from 'lucide-react';
+import { usePathname } from 'next/navigation';
 
 interface ShareButtonsProps {
     title: string;
@@ -11,9 +12,9 @@ interface ShareButtonsProps {
 export default function ShareButtons({ title, slug }: ShareButtonsProps) {
     const [copied, setCopied] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
-
-    const url = typeof window !== 'undefined' 
-        ? `${window.location.origin}/post/${slug}` 
+    const path = usePathname();
+    const url = typeof window !== 'undefined'
+        ? `${window.location.origin}${path}`
         : '';
 
     const encodedUrl = encodeURIComponent(url);
@@ -53,7 +54,7 @@ export default function ShareButtons({ title, slug }: ShareButtonsProps) {
     return (
         <div className="flex items-center gap-2">
             <span className="text-sm text-muted-foreground mr-1">Chia sẻ:</span>
-            
+
             {shareLinks.map((link) => (
                 <a
                     key={link.name}

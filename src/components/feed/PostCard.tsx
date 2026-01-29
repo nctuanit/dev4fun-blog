@@ -33,15 +33,15 @@ function getAvatarColor(name: string) {
 
 export function PostCard({ title, description, author, tags, readTime, coverImage, isFirst, slug }: PostCardProps) {
     const avatarColor = getAvatarColor(author.name);
-    
+
     // Layout cho bài viết đầu tiên (featured)
     if (isFirst && coverImage) {
         return (
             <article className="group relative bg-card border border-border/50 rounded-xl sm:rounded-2xl overflow-hidden mb-4 sm:mb-5 shadow-sm hover:shadow-xl hover:shadow-primary/5 transition-all duration-300">
                 {/* Gradient border on hover */}
                 <div className="absolute inset-0 rounded-xl sm:rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none gradient-border"></div>
-                
-                <div className="relative w-full h-[200px] sm:h-[280px] md:h-[320px] overflow-hidden">
+
+                <div className="relative w-full aspect-[3/2] overflow-hidden">
                     <Image
                         src={coverImage}
                         alt={title}
@@ -50,7 +50,7 @@ export function PostCard({ title, description, author, tags, readTime, coverImag
                     />
                     {/* Enhanced gradient overlay for better text readability */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/10"></div>
-                    
+
                     {/* Content overlay */}
                     <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-5 md:p-6">
                         {/* Author Info */}
@@ -99,13 +99,13 @@ export function PostCard({ title, description, author, tags, readTime, coverImag
             </article>
         );
     }
-    
+
     // Layout cân đối với thumbnail bên phải
     return (
         <article className="group relative bg-card border border-border/50 rounded-xl sm:rounded-2xl overflow-hidden mb-4 sm:mb-5 shadow-sm hover:shadow-xl hover:shadow-primary/5 transition-all duration-300">
             {/* Gradient border on hover */}
             <div className="absolute inset-0 rounded-xl sm:rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none gradient-border"></div>
-            
+
             <div className="flex flex-col sm:flex-row">
                 {/* Content bên trái */}
                 <div className="flex-1 p-4 sm:p-5 md:p-6">
@@ -161,9 +161,9 @@ export function PostCard({ title, description, author, tags, readTime, coverImag
 
                 {/* Thumbnail bên phải */}
                 {coverImage && (
-                    <div className="sm:w-[140px] md:w-[180px] lg:w-[200px] shrink-0">
-                        <Link href={`/post/${slug}`} className="block h-full">
-                            <div className="relative w-full h-[140px] sm:h-full overflow-hidden">
+                    <div className="sm:w-[200px] md:w-[240px] lg:w-[280px] shrink-0">
+                        <Link href={`/post/${slug}`} className="block h-full w-full">
+                            <div className="relative w-full aspect-[3/2] sm:aspect-auto sm:h-full overflow-hidden">
                                 <Image
                                     src={coverImage}
                                     alt={title}
