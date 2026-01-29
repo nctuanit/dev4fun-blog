@@ -122,7 +122,6 @@ dev4fun.vn {
 ```
 
 Reload Caddy:
-
 ```bash
 sudo systemctl reload caddy
 ```
