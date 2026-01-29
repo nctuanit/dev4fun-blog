@@ -1,7 +1,8 @@
 import { MetadataRoute } from 'next';
 import { getSortedPostsData, getAllTags } from '@/lib/posts';
+import { SITE_CONFIG } from '@/lib/constants';
 
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://dev4fun.blog';
+const BASE_URL = SITE_CONFIG.url;
 
 export default function sitemap(): MetadataRoute.Sitemap {
     const posts = getSortedPostsData();

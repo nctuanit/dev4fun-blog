@@ -1,6 +1,7 @@
+import { SITE_CONFIG } from '@/lib/constants';
 import { MetadataRoute } from 'next';
 
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://dev4fun.blog';
+const BASE_URL = SITE_CONFIG.url;
 
 export default function robots(): MetadataRoute.Robots {
     return {
