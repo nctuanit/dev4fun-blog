@@ -48,7 +48,9 @@ export default function KeyboardNavigation({ prevPost, nextPost }: KeyboardNavig
                 case '/':
                     // Focus search (if exists)
                     e.preventDefault();
-                    const searchInput = document.querySelector('input[type="search"], input[placeholder*="Tìm"]') as HTMLInputElement;
+                    const searchInput = document.querySelector(
+                        'input[type="search"], input[placeholder*="Tìm"]'
+                    ) as HTMLInputElement;
                     if (searchInput) {
                         searchInput.focus();
                     }
@@ -86,46 +88,53 @@ export default function KeyboardNavigation({ prevPost, nextPost }: KeyboardNavig
             {/* Help button */}
             <button
                 onClick={() => setShowHelp(true)}
-                className="fixed bottom-6 left-6 p-3 rounded-full bg-secondary text-muted-foreground hover:text-foreground shadow-lg hover:shadow-xl transition-all duration-200 z-50 hidden md:flex items-center justify-center"
+                className="bg-secondary text-muted-foreground hover:text-foreground fixed bottom-6 left-6 z-50 hidden items-center justify-center rounded-full p-3 shadow-lg transition-all duration-200 hover:shadow-xl md:flex"
                 aria-label="Phím tắt"
                 title="Phím tắt (?)"
             >
-                <Keyboard className="w-5 h-5" />
+                <Keyboard className="h-5 w-5" />
             </button>
 
             {/* Help modal */}
             {showHelp && (
-                <div 
-                    className="fixed inset-0 bg-background/80 backdrop-blur-sm z-[100] flex items-center justify-center p-4"
+                <div
+                    className="bg-background/80 fixed inset-0 z-[100] flex items-center justify-center p-4 backdrop-blur-sm"
                     onClick={() => setShowHelp(false)}
                 >
-                    <div 
-                        className="bg-card border border-border rounded-2xl shadow-xl max-w-sm w-full p-6 animate-fade-up"
+                    <div
+                        className="bg-card border-border animate-fade-up w-full max-w-sm rounded-2xl border p-6 shadow-xl"
                         onClick={(e) => e.stopPropagation()}
                     >
-                        <div className="flex items-center justify-between mb-4">
+                        <div className="mb-4 flex items-center justify-between">
                             <h3 className="text-lg font-semibold">Phím tắt</h3>
                             <button
                                 onClick={() => setShowHelp(false)}
-                                className="p-1 rounded-lg hover:bg-secondary transition-colors"
+                                className="hover:bg-secondary rounded-lg p-1 transition-colors"
                             >
-                                <X className="w-5 h-5" />
+                                <X className="h-5 w-5" />
                             </button>
                         </div>
 
                         <div className="space-y-2">
                             {shortcuts.map((shortcut) => (
-                                <div key={shortcut.key} className="flex items-center justify-between py-2">
-                                    <span className="text-muted-foreground">{shortcut.description}</span>
-                                    <kbd className="px-2 py-1 bg-secondary rounded-md text-sm font-mono">
+                                <div
+                                    key={shortcut.key}
+                                    className="flex items-center justify-between py-2"
+                                >
+                                    <span className="text-muted-foreground">
+                                        {shortcut.description}
+                                    </span>
+                                    <kbd className="bg-secondary rounded-md px-2 py-1 font-mono text-sm">
                                         {shortcut.key}
                                     </kbd>
                                 </div>
                             ))}
                         </div>
 
-                        <p className="mt-4 text-xs text-muted-foreground text-center">
-                            Nhấn <kbd className="px-1.5 py-0.5 bg-secondary rounded text-xs">Esc</kbd> để đóng
+                        <p className="text-muted-foreground mt-4 text-center text-xs">
+                            Nhấn{' '}
+                            <kbd className="bg-secondary rounded px-1.5 py-0.5 text-xs">Esc</kbd> để
+                            đóng
                         </p>
                     </div>
                 </div>

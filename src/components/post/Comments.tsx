@@ -7,8 +7,8 @@ export default function Comments() {
     const { theme } = useTheme();
 
     return (
-        <div className="mt-10 pt-10 border-t border-border/50" id="comments">
-            <h2 className="text-2xl font-bold mb-6">Bình luận</h2>
+        <div className="border-border/50 mt-10 border-t pt-10" id="comments">
+            <h2 className="mb-6 text-2xl font-bold">Bình luận</h2>
             <Giscus
                 id="comments"
                 repo="nctuanit/dev4fun-blog"

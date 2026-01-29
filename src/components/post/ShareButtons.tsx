@@ -11,9 +11,7 @@ interface ShareButtonsProps {
 export default function ShareButtons({ title }: ShareButtonsProps) {
     const [copied, setCopied] = useState(false);
     const path = usePathname();
-    const url = typeof window !== 'undefined'
-        ? `${window.location.origin}${path}`
-        : '';
+    const url = typeof window !== 'undefined' ? `${window.location.origin}${path}` : '';
 
     const encodedUrl = encodeURIComponent(url);
     const encodedTitle = encodeURIComponent(title);
@@ -51,7 +49,7 @@ export default function ShareButtons({ title }: ShareButtonsProps) {
 
     return (
         <div className="flex items-center gap-2">
-            <span className="text-sm text-muted-foreground mr-1">Chia sẻ:</span>
+            <span className="text-muted-foreground mr-1 text-sm">Chia sẻ:</span>
 
             {shareLinks.map((link) => (
                 <a
@@ -59,22 +57,22 @@ export default function ShareButtons({ title }: ShareButtonsProps) {
                     href={link.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`p-2 rounded-lg bg-secondary/50 hover:bg-secondary text-muted-foreground ${link.color} transition-colors`}
+                    className={`bg-secondary/50 hover:bg-secondary text-muted-foreground rounded-lg p-2 ${link.color} transition-colors`}
                     title={`Chia sẻ lên ${link.name}`}
                 >
-                    <link.icon className="w-4 h-4" />
+                    <link.icon className="h-4 w-4" />
                 </a>
             ))}
 
             <button
                 onClick={copyToClipboard}
-                className="p-2 rounded-lg bg-secondary/50 hover:bg-secondary text-muted-foreground hover:text-primary transition-colors"
+                className="bg-secondary/50 hover:bg-secondary text-muted-foreground hover:text-primary rounded-lg p-2 transition-colors"
                 title={copied ? 'Đã copy!' : 'Copy link'}
             >
                 {copied ? (
-                    <Check className="w-4 h-4 text-green-500" />
+                    <Check className="h-4 w-4 text-green-500" />
                 ) : (
-                    <Link2 className="w-4 h-4" />
+                    <Link2 className="h-4 w-4" />
                 )}
             </button>
         </div>

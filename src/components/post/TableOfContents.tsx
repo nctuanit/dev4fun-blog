@@ -64,29 +64,29 @@ export default function TableOfContents({ headings }: TableOfContentsProps) {
     };
 
     // Find minimum level to normalize indentation
-    const minLevel = Math.min(...headings.map(h => h.level));
+    const minLevel = Math.min(...headings.map((h) => h.level));
 
     return (
-        <nav className="bg-secondary/30 border border-border/30 rounded-lg p-3 mb-5">
+        <nav className="bg-secondary/30 border-border/30 mb-5 rounded-lg border p-3">
             <button
                 onClick={() => setIsOpen(!isOpen)}
-                className="flex items-center gap-1.5 w-full text-left text-sm font-medium text-foreground/80 hover:text-primary transition-colors"
+                className="text-foreground/80 hover:text-primary flex w-full items-center gap-1.5 text-left text-sm font-medium transition-colors"
             >
-                <List className="w-4 h-4" />
+                <List className="h-4 w-4" />
                 <span>Mục lục</span>
-                <span className="text-[10px] text-muted-foreground bg-secondary px-1.5 py-0.5 rounded-full ml-1">
+                <span className="text-muted-foreground bg-secondary ml-1 rounded-full px-1.5 py-0.5 text-[10px]">
                     {headings.length}
                 </span>
                 <ChevronRight
                     className={cn(
-                        "w-3.5 h-3.5 ml-auto transition-transform duration-200",
-                        isOpen ? "rotate-90" : ""
+                        'ml-auto h-3.5 w-3.5 transition-transform duration-200',
+                        isOpen ? 'rotate-90' : ''
                     )}
                 />
             </button>
 
             {isOpen && (
-                <ul className="mt-2 space-y-0.5 border-l border-border/50 max-h-[280px] overflow-y-auto">
+                <ul className="border-border/50 mt-2 max-h-[280px] space-y-0.5 overflow-y-auto border-l">
                     {headings.map((heading) => {
                         const indent = (heading.level - minLevel) * 8;
                         return (
@@ -95,10 +95,10 @@ export default function TableOfContents({ headings }: TableOfContentsProps) {
                                     href={`#${heading.id}`}
                                     onClick={(e) => handleClick(e, heading.id)}
                                     className={cn(
-                                        "block py-1 px-2.5 text-xs leading-relaxed transition-all duration-150 border-l -ml-px truncate",
+                                        '-ml-px block truncate border-l px-2.5 py-1 text-xs leading-relaxed transition-all duration-150',
                                         activeId === heading.id
-                                            ? "text-primary border-primary bg-primary/5 font-medium"
-                                            : "text-muted-foreground hover:text-foreground border-transparent hover:border-border/50"
+                                            ? 'text-primary border-primary bg-primary/5 font-medium'
+                                            : 'text-muted-foreground hover:text-foreground hover:border-border/50 border-transparent'
                                     )}
                                     style={{ paddingLeft: `${10 + indent}px` }}
                                     title={heading.text}
@@ -113,4 +113,3 @@ export default function TableOfContents({ headings }: TableOfContentsProps) {
         </nav>
     );
 }
-

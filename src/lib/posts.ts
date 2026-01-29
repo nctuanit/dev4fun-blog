@@ -14,7 +14,7 @@ export interface Post {
         tags?: string[];
         author?: string;
         readTime?: string;
-        series?: string;      // Series name
+        series?: string; // Series name
         seriesOrder?: number; // Order in series
     };
     content: string;
@@ -68,7 +68,7 @@ export function getPostBySlug(slug: string): Post | null {
             content: matterResult.content,
         };
     } catch (e) {
-        console.log(e)
+        console.log(e);
         return null;
     }
 }
@@ -96,9 +96,7 @@ export function getAllTags(): TagInfo[] {
 
 export function getPostsByTag(tag: string): Post[] {
     const posts = getSortedPostsData();
-    return posts.filter((post) => 
-        post.frontmatter.tags?.includes(tag)
-    );
+    return posts.filter((post) => post.frontmatter.tags?.includes(tag));
 }
 
 export interface SeriesInfo {

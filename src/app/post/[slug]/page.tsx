@@ -12,19 +12,18 @@ export async function generateStaticParams() {
     }));
 }
 
-export async function generateMetadata(props: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+export async function generateMetadata(props: {
+    params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
     const params = await props.params;
     const post = getPostBySlug(params.slug);
-
     if (!post) {
         return {
             title: 'Không tìm thấy bài viết',
         };
     }
-
     const { title, description, coverImage } = post.frontmatter;
     const ogImage = `/api/og?title=${encodeURIComponent(title)}`;
-
     return {
         title: title,
         description: description || title,
@@ -33,12 +32,12 @@ export async function generateMetadata(props: { params: Promise<{ slug: string }
             description: description || title,
             images: [
                 {
-                    url: ogImage,
+                    url: coverImage || ogImage,
                     width: 1200,
                     height: 630,
                     alt: title,
                 },
-                ...(coverImage ? [{ url: coverImage }] : []) // Fallback/Secondary image
+                ...(coverImage ? [{ url: coverImage }] : []),
             ],
             type: 'article',
         },
@@ -46,7 +45,7 @@ export async function generateMetadata(props: { params: Promise<{ slug: string }
             card: 'summary_large_image',
             title: title,
             description: description || title,
-            images: [ogImage],
+            images: [coverImage || ogImage],
         },
     };
 }
@@ -58,17 +57,15 @@ export default async function PostPage(props: { params: Promise<{ slug: string }
     if (!post) {
         return (
             <div className="flex flex-col items-center justify-center py-20 text-center">
-                <h1 className="text-2xl font-bold mb-4">Không tìm thấy bài viết</h1>
+                <h1 className="mb-4 text-2xl font-bold">Không tìm thấy bài viết</h1>
                 <Link href="/" className="text-primary hover:underline">
                     Quay về trang chủ
                 </Link>
             </div>
         );
     }
-
     // Extract headings from markdown content for TOC
     const headings = extractHeadings(post.content);
-
     return (
         <PostContent frontmatter={post.frontmatter} headings={headings} slug={post.slug}>
             <MDXContent source={post.content} />

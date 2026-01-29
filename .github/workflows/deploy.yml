@@ -1,71 +1,71 @@
 name: Deploy to Server
 
 on:
-  workflow_run:
-    workflows: ["CI"]
-    types:
-      - completed
-    branches: [main]
-  workflow_dispatch:
+    workflow_run:
+        workflows: ['CI']
+        types:
+            - completed
+        branches: [main]
+    workflow_dispatch:
 
 jobs:
-  deploy:
-    name: Deploy to Server
-    runs-on: ubuntu-latest
-    # Only deploy if CI succeeded (or manual trigger)
-    if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
-    environment:
-      name: production
-      url: ${{ vars.PRODUCTION_URL }}
-    steps:
-      - name: Deploy on server
-        uses: appleboy/ssh-action@v1.0.3
-        with:
-          host: ${{ secrets.SERVER_HOST }}
-          username: ${{ secrets.SERVER_USER }}
-          key: ${{ secrets.SERVER_SSH_KEY }}
-          port: ${{ secrets.SERVER_PORT || 22 }}
-          script: |
-            # Variables
-            APP_DIR="/home/deploys/dev4fun-blog"
-            
-            # Load nvm and bun
-            export NVM_DIR="$HOME/.nvm"
-            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-            export BUN_INSTALL="$HOME/.bun"
-            export PATH="$BUN_INSTALL/bin:$PATH"
-            
-            # Navigate to project
-            cd $APP_DIR
-            
-            # Pull latest code
-            git fetch origin main
-            git reset --hard origin/main
-            
-            # Install dependencies
-            bun install 
-            
-            # Build Next.js
-            bun run build
-            
-            # Restart application with PM2
-            if pm2 list | grep -q "dev4fun-blog"; then
-              pm2 restart dev4fun-blog
-            else
-              cd $APP_DIR/.next/standalone
-              pm2 start "npm run start" --name dev4fun-blog --env PORT=3101
-            fi
-            
-            pm2 save
-            
-            echo "✅ Deployment completed!"
+    deploy:
+        name: Deploy to Server
+        runs-on: ubuntu-latest
+        # Only deploy if CI succeeded (or manual trigger)
+        if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
+        environment:
+            name: production
+            url: ${{ vars.PRODUCTION_URL }}
+        steps:
+            - name: Deploy on server
+              uses: appleboy/ssh-action@v1.0.3
+              with:
+                  host: ${{ secrets.SERVER_HOST }}
+                  username: ${{ secrets.SERVER_USER }}
+                  key: ${{ secrets.SERVER_SSH_KEY }}
+                  port: ${{ secrets.SERVER_PORT || 22 }}
+                  script: |
+                      # Variables
+                      APP_DIR="/home/deploys/dev4fun-blog"
 
-  notify-failure:
-    name: Notify CI Failed
-    runs-on: ubuntu-latest
-    if: ${{ github.event.workflow_run.conclusion == 'failure' }}
-    steps:
-      - name: CI Failed - Skip Deploy
-        run: |
-          echo "❌ CI failed, deployment skipped"
-          exit 1
+                      # Load nvm and bun
+                      export NVM_DIR="$HOME/.nvm"
+                      [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+                      export BUN_INSTALL="$HOME/.bun"
+                      export PATH="$BUN_INSTALL/bin:$PATH"
+
+                      # Navigate to project
+                      cd $APP_DIR
+
+                      # Pull latest code
+                      git fetch origin main
+                      git reset --hard origin/main
+
+                      # Install dependencies
+                      bun install 
+
+                      # Build Next.js
+                      bun run build
+
+                      # Restart application with PM2
+                      if pm2 list | grep -q "dev4fun-blog"; then
+                        pm2 restart dev4fun-blog
+                      else
+                        cd $APP_DIR/.next/standalone
+                        pm2 start "npm run start" --name dev4fun-blog --env PORT=3101
+                      fi
+
+                      pm2 save
+
+                      echo "✅ Deployment completed!"
+
+    notify-failure:
+        name: Notify CI Failed
+        runs-on: ubuntu-latest
+        if: ${{ github.event.workflow_run.conclusion == 'failure' }}
+        steps:
+            - name: CI Failed - Skip Deploy
+              run: |
+                  echo "❌ CI failed, deployment skipped"
+                  exit 1

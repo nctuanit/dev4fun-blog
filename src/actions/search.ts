@@ -28,10 +28,9 @@ export async function searchPosts(query: string): Promise<SearchResult[]> {
         const tagsMatch = post.frontmatter.tags?.join(' ').toLowerCase() || '';
 
         // Check if all words are found in title, description, or tags
-        return words.every(word => 
-            titleMatch.includes(word) || 
-            descMatch.includes(word) || 
-            tagsMatch.includes(word)
+        return words.every(
+            (word) =>
+                titleMatch.includes(word) || descMatch.includes(word) || tagsMatch.includes(word)
         );
     });
 
@@ -39,9 +38,9 @@ export async function searchPosts(query: string): Promise<SearchResult[]> {
     filtered.sort((a, b) => {
         const aTitle = a.frontmatter.title.toLowerCase();
         const bTitle = b.frontmatter.title.toLowerCase();
-        const aHasTitle = words.some(w => aTitle.includes(w));
-        const bHasTitle = words.some(w => bTitle.includes(w));
-        
+        const aHasTitle = words.some((w) => aTitle.includes(w));
+        const bHasTitle = words.some((w) => bTitle.includes(w));
+
         if (aHasTitle && !bHasTitle) return -1;
         if (!aHasTitle && bHasTitle) return 1;
         return 0;

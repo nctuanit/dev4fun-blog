@@ -30,7 +30,7 @@ function formatDateOnly(dateString: string) {
     return new Date(dateString).toLocaleDateString('vi-VN', {
         month: 'long',
         day: 'numeric',
-        year: 'numeric'
+        year: 'numeric',
     });
 }
 
@@ -43,28 +43,21 @@ export default function PostContent({ frontmatter, headings, slug, children }: P
             {/* Copy Code Button - auto attaches to code blocks */}
             <CopyCodeButton />
 
-
             {/* Back button */}
             <Link
                 href="/"
-                className="inline-flex items-center gap-1.5 sm:gap-2 text-muted-foreground hover:text-foreground mb-3 sm:mb-4 transition-colors text-sm sm:text-base"
+                className="text-muted-foreground hover:text-foreground mb-3 inline-flex items-center gap-1.5 text-sm transition-colors sm:mb-4 sm:gap-2 sm:text-base"
             >
-                <ArrowLeft className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                <ArrowLeft className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
                 <span>Quay lại</span>
             </Link>
 
-            <article className="bg-card border border-border/50 rounded-2xl overflow-hidden shadow-sm mb-6">
+            <article className="bg-card border-border/50 mb-6 overflow-hidden rounded-2xl border shadow-sm">
                 {/* Cover Image */}
                 {frontmatter.coverImage && (
-                    <div className="w-full aspect-[3/2] relative">
-                        <Image
-                            src={frontmatter.coverImage}
-                            alt={frontmatter.title}
-                            fill
-
-                            priority
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent"></div>
+                    <div className="relative aspect-[3/2] w-full">
+                        <Image src={frontmatter.coverImage} alt={frontmatter.title} fill priority />
+                        <div className="from-card absolute inset-0 bg-gradient-to-t via-transparent to-transparent"></div>
                     </div>
                 )}
 
@@ -73,12 +66,12 @@ export default function PostContent({ frontmatter, headings, slug, children }: P
                     <header className="mb-5 sm:mb-6 md:mb-8">
                         {/* Tags */}
                         {frontmatter.tags && frontmatter.tags.length > 0 && (
-                            <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-3 sm:mb-4">
-                                {frontmatter.tags.map(tag => (
+                            <div className="mb-3 flex flex-wrap gap-1.5 sm:mb-4 sm:gap-2">
+                                {frontmatter.tags.map((tag) => (
                                     <Link
                                         key={tag}
                                         href={`/tags/${tag}`}
-                                        className="text-xs sm:text-sm font-medium text-primary hover:text-primary/80 px-2 sm:px-3 py-0.5 sm:py-1 rounded-md sm:rounded-lg bg-primary/10 hover:bg-primary/20 transition-colors"
+                                        className="text-primary hover:text-primary/80 bg-primary/10 hover:bg-primary/20 rounded-md px-2 py-0.5 text-xs font-medium transition-colors sm:rounded-lg sm:px-3 sm:py-1 sm:text-sm"
                                     >
                                         #{tag}
                                     </Link>
@@ -87,36 +80,34 @@ export default function PostContent({ frontmatter, headings, slug, children }: P
                         )}
 
                         {/* Title */}
-                        <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-extrabold mb-4 sm:mb-5 md:mb-6 leading-tight text-foreground">
+                        <h1 className="text-foreground mb-4 text-xl leading-tight font-extrabold sm:mb-5 sm:text-2xl md:mb-6 md:text-3xl lg:text-4xl">
                             {frontmatter.title}
                         </h1>
 
                         {/* Meta info */}
-                        <div className="flex flex-wrap items-center gap-2 sm:gap-3 md:gap-4 text-xs sm:text-sm text-muted-foreground pb-4 sm:pb-5 md:pb-6 border-b border-border/50">
-                            <span className="font-medium text-foreground">
+                        <div className="text-muted-foreground border-border/50 flex flex-wrap items-center gap-2 border-b pb-4 text-xs sm:gap-3 sm:pb-5 sm:text-sm md:gap-4 md:pb-6">
+                            <span className="text-foreground font-medium">
                                 {frontmatter.author || 'Dev4Fun'}
                             </span>
                             <span className="flex items-center gap-1 sm:gap-1.5">
-                                <Calendar className="w-3 h-3 sm:w-4 sm:h-4" />
+                                <Calendar className="h-3 w-3 sm:h-4 sm:w-4" />
                                 {formatDateOnly(frontmatter.date)}
                             </span>
                             <span className="flex items-center gap-1 sm:gap-1.5">
-                                <Clock className="w-3 h-3 sm:w-4 sm:h-4" />
+                                <Clock className="h-3 w-3 sm:h-4 sm:w-4" />
                                 {frontmatter.readTime || '5'} phút đọc
                             </span>
                         </div>
                     </header>
 
                     {/* Table of Contents */}
-                    {headings.length > 0 && (
-                        <TableOfContents headings={headings} />
-                    )}
+                    {headings.length > 0 && <TableOfContents headings={headings} />}
 
                     {/* Content */}
                     {children}
 
                     {/* Share Buttons */}
-                    <div className="mt-8 pt-6 border-t border-border/50">
+                    <div className="border-border/50 mt-8 border-t pt-6">
                         <ShareButtons title={frontmatter.title} />
                     </div>
 

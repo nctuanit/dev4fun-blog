@@ -19,7 +19,7 @@ interface MainContentProps {
 
 export function MainContent({ children, tags, recentPosts }: MainContentProps) {
     const pathname = usePathname();
-    
+
     // Ẩn left sidebar khi ở trang bài viết chi tiết
     const isPostPage = pathname.startsWith('/post/');
 
@@ -27,12 +27,12 @@ export function MainContent({ children, tags, recentPosts }: MainContentProps) {
         <div className="flex gap-6">
             {/* Left Sidebar - Ẩn khi ở trang bài viết */}
             {!isPostPage && <LeftSidebar />}
-            
+
             {/* Main Content - Mở rộng khi không có left sidebar */}
-            <main className={`flex-1 min-w-0 py-4 ${isPostPage ? 'max-w-4xl mx-auto' : ''}`}>
+            <main className={`min-w-0 flex-1 py-4 ${isPostPage ? 'mx-auto max-w-4xl' : ''}`}>
                 {children}
             </main>
-            
+
             {/* Right Sidebar */}
             <RightSidebar tags={tags} recentPosts={recentPosts} />
         </div>

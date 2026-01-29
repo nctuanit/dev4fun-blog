@@ -46,22 +46,22 @@ export const AUTHOR = {
 export const CACHE_CONFIG = {
     // Revalidate time for static pages
     revalidate: 3600, // 1 hour
-    
+
     // Posts cache
     posts: {
-        list: 300,      // 5 minutes
-        detail: 600,    // 10 minutes
+        list: 300, // 5 minutes
+        detail: 600, // 10 minutes
     },
-    
+
     // Tags cache
     tags: {
-        list: 600,      // 10 minutes
+        list: 600, // 10 minutes
     },
-    
+
     // Static assets cache
     assets: {
-        images: 86400,  // 1 day
-        fonts: 604800,  // 7 days
+        images: 86400, // 1 day
+        fonts: 604800, // 7 days
     },
 } as const;
 
@@ -83,8 +83,9 @@ export const PAGINATION = {
 export const SEO_CONFIG = {
     titleTemplate: '%s | Dev4Fun Blog',
     defaultTitle: 'Dev4Fun Blog - Chia sẻ kiến thức lập trình',
-    defaultDescription: 'Blog cá nhân chia sẻ kiến thức về lập trình, công nghệ và những trải nghiệm trong quá trình phát triển phần mềm.',
-    keywords:["blog", "lập trình", "developer", "coding", "javascript", "react", "nextjs"]  ,
+    defaultDescription:
+        'Blog cá nhân chia sẻ kiến thức về lập trình, công nghệ và những trải nghiệm trong quá trình phát triển phần mềm.',
+    keywords: ['blog', 'lập trình', 'developer', 'coding', 'javascript', 'react', 'nextjs'],
     openGraph: {
         type: 'website',
         siteName: 'Dev4Fun Blog',
@@ -102,7 +103,7 @@ export const SEO_CONFIG = {
         site: '@dev4fun',
         cardType: 'summary_large_image',
     },
-}
+};
 
 // ============================================
 // NAVIGATION

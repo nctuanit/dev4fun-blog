@@ -1,0 +1,9 @@
+.next
+node_modules
+dist
+build
+.cache
+public
+coverage
+*.min.js
+*.min.css

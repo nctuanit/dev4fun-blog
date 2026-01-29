@@ -103,12 +103,12 @@ Project sử dụng GitHub Actions:
 
 #### Secrets cần thiết
 
-| Secret | Mô tả |
-|--------|-------|
-| `SERVER_HOST` | IP hoặc domain server |
-| `SERVER_USER` | SSH username |
-| `SERVER_SSH_KEY` | Private SSH key |
-| `SERVER_PORT` | Port SSH (mặc định 22) |
+| Secret           | Mô tả                  |
+| ---------------- | ---------------------- |
+| `SERVER_HOST`    | IP hoặc domain server  |
+| `SERVER_USER`    | SSH username           |
+| `SERVER_SSH_KEY` | Private SSH key        |
+| `SERVER_PORT`    | Port SSH (mặc định 22) |
 
 ### Caddy config
 
@@ -122,6 +122,7 @@ dev4fun.vn {
 ```
 
 Reload Caddy:
+
 ```bash
 sudo systemctl reload caddy
 ```

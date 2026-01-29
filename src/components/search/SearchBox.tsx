@@ -42,21 +42,24 @@ export function SearchBox({ variant, onClose }: SearchBoxProps) {
     );
 
     // Navigate to post
-    const navigateToPost = useCallback((slug: string) => {
-        setQuery('');
-        setIsOpen(false);
-        onClose?.();
-        router.push(`/post/${slug}`);
-    }, [router, onClose]);
+    const navigateToPost = useCallback(
+        (slug: string) => {
+            setQuery('');
+            setIsOpen(false);
+            onClose?.();
+            router.push(`/post/${slug}`);
+        },
+        [router, onClose]
+    );
 
     // Handle keyboard navigation
     const handleKeyDown = (e: React.KeyboardEvent) => {
         if (e.key === 'ArrowDown') {
             e.preventDefault();
-            setSelectedIndex(prev => Math.min(prev + 1, results.length - 1));
+            setSelectedIndex((prev) => Math.min(prev + 1, results.length - 1));
         } else if (e.key === 'ArrowUp') {
             e.preventDefault();
-            setSelectedIndex(prev => Math.max(prev - 1, -1));
+            setSelectedIndex((prev) => Math.max(prev - 1, -1));
         } else if (e.key === 'Enter' && selectedIndex >= 0) {
             e.preventDefault();
             const selected = results[selectedIndex];
@@ -73,8 +76,12 @@ export function SearchBox({ variant, onClose }: SearchBoxProps) {
     // Close dropdown when clicking outside
     useEffect(() => {
         const handleClickOutside = (e: MouseEvent) => {
-            if (resultsRef.current && !resultsRef.current.contains(e.target as Node) &&
-                inputRef.current && !inputRef.current.contains(e.target as Node)) {
+            if (
+                resultsRef.current &&
+                !resultsRef.current.contains(e.target as Node) &&
+                inputRef.current &&
+                !inputRef.current.contains(e.target as Node)
+            ) {
                 setIsOpen(false);
             }
         };
@@ -103,7 +110,7 @@ export function SearchBox({ variant, onClose }: SearchBoxProps) {
         return new Date(dateString).toLocaleDateString('vi-VN', {
             day: 'numeric',
             month: 'short',
-            year: 'numeric'
+            year: 'numeric',
         });
     };
 
@@ -111,8 +118,8 @@ export function SearchBox({ variant, onClose }: SearchBoxProps) {
     const renderResults = () => {
         if (isLoading) {
             return (
-                <div className="py-8 flex flex-col items-center justify-center text-muted-foreground">
-                    <Loader2 className="w-6 h-6 animate-spin mb-2" />
+                <div className="text-muted-foreground flex flex-col items-center justify-center py-8">
+                    <Loader2 className="mb-2 h-6 w-6 animate-spin" />
                     <span className="text-sm">Đang tìm kiếm...</span>
                 </div>
             );
@@ -125,10 +132,10 @@ export function SearchBox({ variant, onClose }: SearchBoxProps) {
                         <button
                             key={result.slug}
                             onClick={() => handleResultClick(result.slug)}
-                            className={`w-full flex items-start gap-3 px-4 py-3 hover:bg-secondary/50 transition-colors text-left ${selectedIndex === index ? 'bg-secondary/50' : ''}`}
+                            className={`hover:bg-secondary/50 flex w-full items-start gap-3 px-4 py-3 text-left transition-colors ${selectedIndex === index ? 'bg-secondary/50' : ''}`}
                         >
                             {result.coverImage ? (
-                                <div className="relative w-12 h-12 rounded-lg overflow-hidden shrink-0">
+                                <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded-lg">
                                     <Image
                                         src={result.coverImage}
                                         alt={result.title}
@@ -137,24 +144,24 @@ export function SearchBox({ variant, onClose }: SearchBoxProps) {
                                     />
                                 </div>
                             ) : (
-                                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
-                                    <FileText className="w-5 h-5 text-primary" />
+                                <div className="bg-primary/10 flex h-12 w-12 shrink-0 items-center justify-center rounded-lg">
+                                    <FileText className="text-primary h-5 w-5" />
                                 </div>
                             )}
-                            <div className="flex-1 min-w-0">
-                                <h4 className="font-medium text-sm text-foreground line-clamp-1">
+                            <div className="min-w-0 flex-1">
+                                <h4 className="text-foreground line-clamp-1 text-sm font-medium">
                                     {result.title}
                                 </h4>
-                                <p className="text-xs text-muted-foreground line-clamp-1 mt-0.5">
+                                <p className="text-muted-foreground mt-0.5 line-clamp-1 text-xs">
                                     {result.description}
                                 </p>
-                                <div className="flex items-center gap-2 mt-1 text-xs text-muted-foreground">
+                                <div className="text-muted-foreground mt-1 flex items-center gap-2 text-xs">
                                     <span>{formatDate(result.date)}</span>
                                     {result.readTime && (
                                         <>
-                                            <span className="w-1 h-1 rounded-full bg-muted-foreground/50"></span>
+                                            <span className="bg-muted-foreground/50 h-1 w-1 rounded-full"></span>
                                             <span className="flex items-center gap-1">
-                                                <Clock className="w-3 h-3" />
+                                                <Clock className="h-3 w-3" />
                                                 {result.readTime} phút
                                             </span>
                                         </>
@@ -168,7 +175,7 @@ export function SearchBox({ variant, onClose }: SearchBoxProps) {
         }
 
         return (
-            <div className="py-8 text-center text-muted-foreground text-sm">
+            <div className="text-muted-foreground py-8 text-center text-sm">
                 Không tìm thấy bài viết nào cho &quot;{debouncedQuery}&quot;
             </div>
         );
@@ -178,8 +185,8 @@ export function SearchBox({ variant, onClose }: SearchBoxProps) {
     const renderMobileResults = () => {
         if (isLoading) {
             return (
-                <div className="py-12 flex flex-col items-center justify-center text-muted-foreground">
-                    <Loader2 className="w-8 h-8 animate-spin mb-3" />
+                <div className="text-muted-foreground flex flex-col items-center justify-center py-12">
+                    <Loader2 className="mb-3 h-8 w-8 animate-spin" />
                     <span>Đang tìm kiếm...</span>
                 </div>
             );
@@ -192,10 +199,10 @@ export function SearchBox({ variant, onClose }: SearchBoxProps) {
                         <button
                             key={result.slug}
                             onClick={() => handleResultClick(result.slug)}
-                            className={`w-full flex items-start gap-3 px-4 py-4 hover:bg-secondary/50 transition-colors border-b border-border/30 text-left ${selectedIndex === index ? 'bg-secondary/50' : ''}`}
+                            className={`hover:bg-secondary/50 border-border/30 flex w-full items-start gap-3 border-b px-4 py-4 text-left transition-colors ${selectedIndex === index ? 'bg-secondary/50' : ''}`}
                         >
                             {result.coverImage ? (
-                                <div className="relative w-16 h-16 rounded-lg overflow-hidden shrink-0">
+                                <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-lg">
                                     <Image
                                         src={result.coverImage}
                                         alt={result.title}
@@ -204,24 +211,24 @@ export function SearchBox({ variant, onClose }: SearchBoxProps) {
                                     />
                                 </div>
                             ) : (
-                                <div className="w-16 h-16 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
-                                    <FileText className="w-6 h-6 text-primary" />
+                                <div className="bg-primary/10 flex h-16 w-16 shrink-0 items-center justify-center rounded-lg">
+                                    <FileText className="text-primary h-6 w-6" />
                                 </div>
                             )}
-                            <div className="flex-1 min-w-0">
-                                <h4 className="font-semibold text-base text-foreground line-clamp-2">
+                            <div className="min-w-0 flex-1">
+                                <h4 className="text-foreground line-clamp-2 text-base font-semibold">
                                     {result.title}
                                 </h4>
-                                <p className="text-sm text-muted-foreground line-clamp-2 mt-1">
+                                <p className="text-muted-foreground mt-1 line-clamp-2 text-sm">
                                     {result.description}
                                 </p>
-                                <div className="flex items-center gap-2 mt-2 text-xs text-muted-foreground">
+                                <div className="text-muted-foreground mt-2 flex items-center gap-2 text-xs">
                                     <span>{formatDate(result.date)}</span>
                                     {result.readTime && (
                                         <>
-                                            <span className="w-1 h-1 rounded-full bg-muted-foreground/50"></span>
+                                            <span className="bg-muted-foreground/50 h-1 w-1 rounded-full"></span>
                                             <span className="flex items-center gap-1">
-                                                <Clock className="w-3 h-3" />
+                                                <Clock className="h-3 w-3" />
                                                 {result.readTime} phút
                                             </span>
                                         </>
@@ -236,13 +243,11 @@ export function SearchBox({ variant, onClose }: SearchBoxProps) {
 
         return (
             <div className="py-12 text-center">
-                <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-secondary flex items-center justify-center">
-                    <Search className="w-8 h-8 text-muted-foreground" />
+                <div className="bg-secondary mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl">
+                    <Search className="text-muted-foreground h-8 w-8" />
                 </div>
-                <p className="text-muted-foreground">
-                    Không tìm thấy bài viết nào cho
-                </p>
-                <p className="text-foreground font-medium mt-1">&quot;{debouncedQuery}&quot;</p>
+                <p className="text-muted-foreground">Không tìm thấy bài viết nào cho</p>
+                <p className="text-foreground mt-1 font-medium">&quot;{debouncedQuery}&quot;</p>
             </div>
         );
     };
@@ -251,9 +256,11 @@ export function SearchBox({ variant, onClose }: SearchBoxProps) {
     if (variant === 'desktop') {
         return (
             <div className="relative w-full">
-                <div className={`absolute inset-0 bg-gradient-to-r from-primary/20 via-purple-500/20 to-pink-500/20 rounded-xl blur-lg transition-opacity duration-300 ${isOpen && query ? 'opacity-100' : 'opacity-0'}`}></div>
+                <div
+                    className={`from-primary/20 absolute inset-0 rounded-xl bg-gradient-to-r via-purple-500/20 to-pink-500/20 blur-lg transition-opacity duration-300 ${isOpen && query ? 'opacity-100' : 'opacity-0'}`}
+                ></div>
                 <div className="relative">
-                    <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                    <Search className="text-muted-foreground absolute top-1/2 left-4 h-4 w-4 -translate-y-1/2" />
                     <input
                         ref={inputRef}
                         type="text"
@@ -265,23 +272,23 @@ export function SearchBox({ variant, onClose }: SearchBoxProps) {
                         onFocus={() => setIsOpen(true)}
                         onKeyDown={handleKeyDown}
                         placeholder="Tìm kiếm bài viết..."
-                        className="w-full h-11 pl-11 pr-10 rounded-xl border border-border/50 bg-card/50 focus:bg-card focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50 transition-all placeholder:text-muted-foreground/60 text-sm"
+                        className="border-border/50 bg-card/50 focus:bg-card focus:ring-primary/50 focus:border-primary/50 placeholder:text-muted-foreground/60 h-11 w-full rounded-xl border pr-10 pl-11 text-sm transition-all focus:ring-2 focus:outline-none"
                     />
                     {query && (
                         <button
                             onClick={clearSearch}
-                            className="absolute right-3 top-1/2 -translate-y-1/2 p-1 hover:bg-secondary rounded-md text-muted-foreground hover:text-foreground transition-colors"
+                            className="hover:bg-secondary text-muted-foreground hover:text-foreground absolute top-1/2 right-3 -translate-y-1/2 rounded-md p-1 transition-colors"
                         >
-                            <X className="w-4 h-4" />
+                            <X className="h-4 w-4" />
                         </button>
                     )}
                 </div>
 
                 {/* Desktop Results Dropdown */}
                 {isOpen && debouncedQuery && (
-                    <div 
+                    <div
                         ref={resultsRef}
-                        className="absolute top-full left-0 right-0 mt-2 bg-card border border-border/50 rounded-xl shadow-xl overflow-hidden z-50"
+                        className="bg-card border-border/50 absolute top-full right-0 left-0 z-50 mt-2 overflow-hidden rounded-xl border shadow-xl"
                     >
                         {renderResults()}
                     </div>
@@ -292,11 +299,11 @@ export function SearchBox({ variant, onClose }: SearchBoxProps) {
 
     // Mobile variant
     return (
-        <div className="flex flex-col h-full">
+        <div className="flex h-full flex-col">
             {/* Mobile Search Header */}
-            <div className="flex items-center gap-3 p-4 border-b border-border/50">
-                <div className="flex-1 relative">
-                    <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
+            <div className="border-border/50 flex items-center gap-3 border-b p-4">
+                <div className="relative flex-1">
+                    <Search className="text-muted-foreground absolute top-1/2 left-4 h-5 w-5 -translate-y-1/2" />
                     <input
                         ref={inputRef}
                         type="text"
@@ -304,23 +311,23 @@ export function SearchBox({ variant, onClose }: SearchBoxProps) {
                         onChange={(e) => handleQueryChange(e.target.value)}
                         onKeyDown={handleKeyDown}
                         placeholder="Tìm kiếm bài viết..."
-                        className="w-full h-12 pl-12 pr-10 rounded-xl border border-border/50 bg-card focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50 transition-all placeholder:text-muted-foreground/60 text-base"
+                        className="border-border/50 bg-card focus:ring-primary/50 focus:border-primary/50 placeholder:text-muted-foreground/60 h-12 w-full rounded-xl border pr-10 pl-12 text-base transition-all focus:ring-2 focus:outline-none"
                     />
                     {query && (
                         <button
                             onClick={clearSearch}
-                            className="absolute right-3 top-1/2 -translate-y-1/2 p-1 hover:bg-secondary rounded-md text-muted-foreground"
+                            className="hover:bg-secondary text-muted-foreground absolute top-1/2 right-3 -translate-y-1/2 rounded-md p-1"
                         >
-                            <X className="w-4 h-4" />
+                            <X className="h-4 w-4" />
                         </button>
                     )}
                 </div>
                 <button
                     onClick={onClose}
-                    className="p-3 hover:bg-primary/10 rounded-xl text-muted-foreground hover:text-primary transition-colors"
+                    className="hover:bg-primary/10 text-muted-foreground hover:text-primary rounded-xl p-3 transition-colors"
                     aria-label="Đóng tìm kiếm"
                 >
-                    <X className="w-6 h-6" />
+                    <X className="h-6 w-6" />
                 </button>
             </div>
 
@@ -330,12 +337,10 @@ export function SearchBox({ variant, onClose }: SearchBoxProps) {
                     renderMobileResults()
                 ) : (
                     <div className="py-12 text-center">
-                        <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-primary/20 to-purple-500/20 flex items-center justify-center">
-                            <Search className="w-8 h-8 text-primary" />
+                        <div className="from-primary/20 mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br to-purple-500/20">
+                            <Search className="text-primary h-8 w-8" />
                         </div>
-                        <p className="text-muted-foreground">
-                            Nhập từ khóa để tìm kiếm bài viết
-                        </p>
+                        <p className="text-muted-foreground">Nhập từ khóa để tìm kiếm bài viết</p>
                     </div>
                 )}
             </div>

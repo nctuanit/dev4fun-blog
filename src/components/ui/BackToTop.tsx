@@ -27,10 +27,10 @@ export default function BackToTop() {
     return (
         <button
             onClick={scrollToTop}
-            className="fixed bottom-6 right-6 p-3 rounded-full bg-primary text-primary-foreground shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-200 z-50"
+            className="bg-primary text-primary-foreground fixed right-6 bottom-6 z-50 rounded-full p-3 shadow-lg transition-all duration-200 hover:scale-110 hover:shadow-xl"
             aria-label="Cuộn lên đầu trang"
         >
-            <ArrowUp className="w-5 h-5" />
+            <ArrowUp className="h-5 w-5" />
         </button>
     );
 }

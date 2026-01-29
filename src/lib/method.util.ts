@@ -1,4 +1,4 @@
-import { TOCItem } from "@/components/post/TableOfContents";
+import { TOCItem } from '@/components/post/TableOfContents';
 import GithubSlugger from 'github-slugger';
 
 /**
@@ -15,12 +15,12 @@ export function extractHeadings(content: string): TOCItem[] {
     while ((match = headingRegex.exec(content)) !== null) {
         const level = match[1].length;
         const rawText = match[2];
-        
+
         // Clean text for display (remove markdown formatting)
         const text = rawText
-            .replace(/\*\*(.+?)\*\*/g, '$1')  // Remove bold
-            .replace(/\*(.+?)\*/g, '$1')      // Remove italic
-            .replace(/`(.+?)`/g, '$1')        // Remove inline code
+            .replace(/\*\*(.+?)\*\*/g, '$1') // Remove bold
+            .replace(/\*(.+?)\*/g, '$1') // Remove italic
+            .replace(/`(.+?)`/g, '$1') // Remove inline code
             .replace(/\[(.+?)\]\(.+?\)/g, '$1') // Remove links, keep text
             .trim();
 
