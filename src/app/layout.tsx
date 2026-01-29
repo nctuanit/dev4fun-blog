@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 import "./globals.css";
 import { Be_Vietnam_Pro, JetBrains_Mono } from "next/font/google";
-
+import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google'
 const beVietnamPro = Be_Vietnam_Pro({
   subsets: ["latin", "vietnamese"],
   weight: ["300", "400", "500", "600", "700"],
@@ -56,6 +56,8 @@ export default function RootLayout({
             {children}
           </MainLayout>
         </ThemeProvider>
+        <GoogleAnalytics gaId="G-8WF2XC91PL" />
+        <GoogleTagManager gtmId="GTM-TTRKPX7B" />
       </body>
     </html>
   );
