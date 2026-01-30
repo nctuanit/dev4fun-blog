@@ -12,6 +12,7 @@ export interface Post {
         description: string;
         coverImage?: string;
         tags?: string[];
+        category?: string; // New field
         author?: string;
         readTime?: string;
         series?: string; // Series name
@@ -99,6 +100,33 @@ export function getPostsByTag(tag: string): Post[] {
     return posts.filter((post) => post.frontmatter.tags?.includes(tag));
 }
 
+// New Category Functions
+export interface CategoryInfo {
+    name: string;
+    count: number;
+}
+
+export function getAllCategories(): CategoryInfo[] {
+    const posts = getSortedPostsData();
+    const categoryCount: Record<string, number> = {};
+
+    posts.forEach((post) => {
+        const category = post.frontmatter.category;
+        if (category) {
+            categoryCount[category] = (categoryCount[category] || 0) + 1;
+        }
+    });
+
+    return Object.entries(categoryCount)
+        .map(([name, count]) => ({ name, count }))
+        .sort((a, b) => b.count - a.count);
+}
+
+export function getPostsByCategory(category: string): Post[] {
+    const posts = getSortedPostsData();
+    return posts.filter((post) => post.frontmatter.category === category);
+}
+
 export interface SeriesInfo {
     name: string;
     posts: {
@@ -136,3 +164,4 @@ export function getAdjacentPosts(currentSlug: string): { prev: Post | null; next
         next: currentIndex > 0 ? posts[currentIndex - 1] : null,
     };
 }
+

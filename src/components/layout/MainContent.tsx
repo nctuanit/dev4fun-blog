@@ -11,13 +11,17 @@ interface MainContentProps {
         name: string;
         count: number;
     }[];
+    categories: {
+        name: string;
+        count: number;
+    }[];
     recentPosts: {
         slug: string;
         title: string;
     }[];
 }
 
-export function MainContent({ children, tags, recentPosts }: MainContentProps) {
+export function MainContent({ children, tags, categories, recentPosts }: MainContentProps) {
     const pathname = usePathname();
 
     // Ẩn left sidebar khi ở trang bài viết chi tiết
@@ -34,7 +38,7 @@ export function MainContent({ children, tags, recentPosts }: MainContentProps) {
             </main>
 
             {/* Right Sidebar */}
-            <RightSidebar tags={tags} recentPosts={recentPosts} />
+            <RightSidebar tags={tags} categories={categories} recentPosts={recentPosts} />
         </div>
     );
 }

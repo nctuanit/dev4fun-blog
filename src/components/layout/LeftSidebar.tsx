@@ -2,12 +2,13 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { Home, Tag, Github, Facebook, BookOpen, GitBranch, Briefcase } from 'lucide-react';
+import { Home, Tag, Github, Facebook, BookOpen, GitBranch, Briefcase, Layers } from 'lucide-react';
 import { SITE_CONFIG, SOCIAL_LINKS, THEME_COLORS } from '@/lib/constants';
 import { usePathname } from 'next/navigation';
 
 const NAV_ITEMS = [
     { icon: Home, label: 'Trang chủ', href: '/' },
+    { icon: Layers, label: 'Danh mục', href: '/categories' },
     { icon: Tag, label: 'Tags', href: '/tags' },
     { icon: GitBranch, label: 'Mã nguồn mở', href: '/open-source' },
     { icon: Briefcase, label: 'Dự án', href: '/projects' },

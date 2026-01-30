@@ -12,8 +12,6 @@ export default function robots(): MetadataRoute.Robots {
                 disallow: ['/api/', '/_next/', '/private/'],
             },
         ],
-        sitemap: `${BASE_URL}/sitemap.xml`,
-        // Note: llms.txt is available at /llms.txt
-        // Some crawlers may look for it automatically
+        sitemap: `${BASE_URL}/sitemap.xml`
     };
 }

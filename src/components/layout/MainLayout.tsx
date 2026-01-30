@@ -13,13 +13,17 @@ interface MainLayoutProps {
         name: string;
         count: number;
     }[];
+    categories: {
+        name: string;
+        count: number;
+    }[];
     recentPosts: {
         slug: string;
         title: string;
     }[];
 }
 
-export function MainLayout({ children, tags, recentPosts }: MainLayoutProps) {
+export function MainLayout({ children, tags, categories, recentPosts }: MainLayoutProps) {
     return (
         <div className="bg-background text-foreground flex min-h-screen flex-col font-sans">
             {/* Background decoration */}
@@ -32,7 +36,7 @@ export function MainLayout({ children, tags, recentPosts }: MainLayoutProps) {
             <Header />
 
             <div className="mx-auto w-full max-w-7xl flex-1 px-4 pt-16 lg:px-6">
-                <MainContent tags={tags} recentPosts={recentPosts}>
+                <MainContent tags={tags} categories={categories} recentPosts={recentPosts}>
                     {children}
                 </MainContent>
             </div>

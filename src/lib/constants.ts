@@ -111,6 +111,7 @@ export const SEO_CONFIG = {
 
 export const NAV_ITEMS = [
     { label: 'Trang chủ', href: '/' },
+    { label: 'Danh mục', href: '/categories' },
     { label: 'Tags', href: '/tags' },
     { label: 'Về blog', href: '/about' },
 ] as const;

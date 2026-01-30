@@ -16,8 +16,12 @@ const FOOTER_LINKS = [
         links: NAV_ITEMS,
     },
     {
-        title: 'Tài nguyên',
-        links: [{ label: 'Sitemap', href: '/sitemap.xml' }],
+        title: 'Pháp lý',
+        links: [
+            { label: 'Chính sách bảo mật', href: '/privacy' },
+            { label: 'Điều khoản sử dụng', href: '/terms' },
+            { label: 'Sitemap', href: '/sitemap.xml' },
+        ],
     },
 ];
 
