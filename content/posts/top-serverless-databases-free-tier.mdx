@@ -1,0 +1,130 @@
+---
+title: 'Top 5 Serverless SQL Database Miễn Phí Đáng Dùng Nhất 2026'
+date: '2026-02-02'
+description: 'Tổng hợp 5 database serverless có gói Free Tier tốt nhất năm 2026: Neon, Supabase, Turso, và TiDB Cloud. Đánh giá chi tiết ưu nhược điểm.'
+tags: ['database', 'serverless', 'postgres', 'mysql', 'free-tier']
+category: 'Database'
+author: 'TuanNC'
+readTime: '6'
+coverImage: 'https://pub-a893aee04799448e98702e8da7edff53.r2.dev/20260202/Gemini_Generated_Image_qw6l79qw6l79qw6l.png'
+---
+
+Chào mọi người, nếu bạn đang tìm kiếm một giải pháp database **hoàn toàn miễn phí** để triển khai dự án cá nhân hoặc phục vụ nhu cầu học tập mà không muốn bận tâm về việc quản lý server, thì bài viết này chính là kim chỉ nam dành cho bạn.
+
+Sau khi rà soát và loại bỏ những cái tên đã chuyển sang mô hình thu phí (điển hình như PlanetScale), mình đã tổng hợp được danh sách 4 ứng cử viên sáng giá nhất trong mảng **Serverless Database Free Tier** năm 2026. Các tiêu chí lựa chọn bao gồm: **Miễn phí thực sự**, **Dễ dàng tích hợp**, và **Hiệu năng ấn tượng**.
+
+> **tldr**
+> 
+> *   **Neon**: Best cho Next.js & CI/CD.
+> *   **Supabase**: Best cho MVP & All-in-one.
+> *   **Turso**: Best cho Edge & Speed.
+> *   **TiDB**: Best cho Big Data & MySQL.
+> *   **Prisma Postgres**: Best cho Prisma Fan.
+
+### Bảng So Sánh Nhanh (Free Tier)
+
+| Database | Loại | Storage | Compute / Limits | Điểm Nhấn |
+| :---: | :---: | :--- | :--- | :--- |
+| **Neon** | Postgres | 0.5 GB | 100 giờ active/tháng | Branching |
+| **Supabase** | Postgres | 500 MB | 500k Edge Invocations | All-in-one (Auth, Realtime) |
+| **Turso** | SQLite | 9 GB | 500 triệu row read | Siêu nhanh (Edge), dung lượng lớn |
+| **TiDB** | MySQL | 25 GB | 50M Request Units | Dung lượng khổng lồ, Distributed |
+| **Prisma**| Postgres | 0.5 GB | 100k Operations/tháng| Tối ưu cho Prisma ORM |
+
+---
+
+### 1. Neon (Serverless Postgres)
+
+Neon là lựa chọn hàng đầu cho những lập trình viên yêu thích hệ sinh thái Postgres thuần túy nhưng mong muốn một trải nghiệm DX (Developer Experience) hiện đại và linh hoạt.
+
+✅ Ưu điểm nổi bật
+*   **Database Branching**: Đây là tính năng "ăn tiền" nhất của Neon. Bạn có thể tạo branch cho database ngay lập tức (sử dụng cơ chế copy-on-write) để kiểm thử tính năng mới mà không làm ảnh hưởng đến dữ liệu gốc. Cực kỳ phù hợp với quy trình Pull Request/Code Review.
+*   **Scale to Zero**: Database sẽ tự động "ngủ" sau 5 phút không hoạt động để tiết kiệm tài nguyên. Đây là tính năng cốt lõi của serverless giúp tối ưu chi phí.
+*   **Postgres Thuần**: Tương thích 100% với psql và các driver Postgres truyền thống, giúp việc migrate ứng dụng cũ trở nên dễ dàng.
+
+❌ Điểm hạn chế
+*   **Cold Start**: Khi database đang ở trạng thái ngủ, request đầu tiên sẽ mất một khoảng trễ nhỏ (vài trăm ms đến 1s) để khởi động lại.
+*   **Giới hạn Compute**: Gói Free cung cấp 100 giờ active usage mỗi tháng. Nếu ứng dụng của bạn chạy liên tục 24/7, bạn có thể sẽ cần cân nhắc nâng cấp. Tuy nhiên, với các dự án hobby hoặc dev environment thì con số này là rất dư dả.
+
+
+
+---
+
+### 2. Supabase
+
+Supabase tự định vị mình là giải pháp thay thế Firebase (Open Source). Nó không chỉ là một database đơn thuần mà là một nền tảng Backend-as-a-Service (BaaS) toàn diện.
+
+✅ Ưu điểm nổi bật
+*   **Hệ sinh thái đồ sộ**: Cung cấp sẵn các module Authentication, Storage, Realtime subscriptions, và Edge Functions. Bạn gần như có đủ mọi thứ để build một app hoàn chỉnh.
+*   **Dashboard trực quan**: Giao diện quản lý table, data cũng như user rất thân thiện, giúp người mới tiếp cận dễ dàng mà không cần nhiều kiến thức SQL chuyên sâu.
+*   **API Tự động**: Tự động tạo RESTful API và GraphQL dựa trên schema database, giúp tiết kiệm đáng kể thời gian code backend.
+
+❌ Điểm hạn chế
+*   **Pause Project**: Đối với gói Free, dự án sẽ bị **tạm dừng (pause)** nếu không phát sinh request nào trong vòng 7 ngày. Bạn sẽ cần truy cập dashboard để kích hoạt lại thủ công.
+*   **Vendor Lock-in nhẹ**: Mặc dù lõi là Postgres, nhưng việc phụ thuộc sâu vào các tính năng riêng của Supabase (như Auth hay Realtime) sẽ khiến việc chuyển đổi sang nền tảng khác sau này trở nên phức tạp hơn.
+
+
+
+---
+
+### 3. Turso (SQLite for the Edge)
+
+Turso được xây dựng dựa trên libSQL, một bản fork của SQLite, được tối ưu hóa đặc biệt cho tốc độ và môi trường Edge Computing.
+
+✅ Ưu điểm nổi bật
+*   **Tốc độ vượt trội**: Độ trễ cực thấp, truy vấn phản hồi gần như tức thì.
+*   **Dung lượng Free Tier lớn**: Cho phép lưu trữ tới **9GB** (một con số rất ấn tượng so với mức 500MB thường thấy ở các đối thủ khác).
+*   **Không Cold Start**: Database luôn trong trạng thái sẵn sàng, loại bỏ hoàn toàn độ trễ khởi động.
+*   **Dễ dàng phát triển cục bộ**: Vì bản chất là SQLite, bạn có thể phát triển với file database local và đồng bộ lên Turso một cách mượt mà.
+
+❌ Điểm hạn chế
+*   **Đặc thù của SQLite**: Sẽ thiếu vắng một số extension mạnh mẽ của Postgres (như PostGIS full features) và khả năng xử lý ghi đồng thời (concurrent write) ở quy mô lớn sẽ không tối ưu bằng các DB client-server truyền thống.
+
+
+
+---
+
+### 4. TiDB Cloud (Distributed MySQL)
+
+Đây là đại diện duy nhất của hệ MySQL trong danh sách này, nổi bật như một "gã khổng lồ" về khả năng lưu trữ miễn phí.
+
+✅ Ưu điểm nổi bật
+*   **Dung lượng khổng lồ**: Gói Serverless Free cho phép lưu trữ tới **25GB** (chia thành 5 clusters, mỗi cluster 5GB). Đây là con số không đối thủ nào trong danh sách này có thể so sánh được.
+*   **Tương thích MySQL**: Hỗ trợ chuẩn MySQL, giúp các lập trình viên quen thuộc với LAMP/LEMP stack chuyển đổi dễ dàng.
+*   **Khả năng mở rộng (Scale)**: Kiến trúc Distributed SQL giúp hệ thống chịu tải cực tốt, sẵn sàng cho việc mở rộng quy mô khi dự án phát triển mạnh.
+
+❌ Điểm hạn chế
+*   **Cộng đồng**: Cộng đồng hỗ trợ và tài liệu hướng dẫn (cho các tech stack mới như Next.js) có phần khiêm tốn hơn so với hệ sinh thái Postgres (Neon/Supabase) đang rất thịnh hành.
+
+
+
+---
+
+### 5. Prisma Postgres (The DX Optimizer)
+
+Nếu bạn là fan cứng của Prisma ORM, thì **Prisma Postgres** là mảnh ghép hoàn hảo. Database này giải quyết triệt để vấn đề "Cold Start" và Connection Pool mà người dùng Prisma thường gặp phải khi deploy serverless.
+
+✅ Ưu điểm nổi bật
+*   **Tối ưu cực tốt cho Prisma**: Được thiết kế riêng để hoạt động mượt mà với Prisma ORM, gần như không cần cấu hình thêm.
+*   **Không Cold Start**: Sử dụng công nghệ Unikernels giúp khởi động siêu nhanh, loại bỏ độ trễ khó chịu.
+*   **Connection Pooling tích hợp**: Không lo bị lỗi "too many connections" khi dùng serverless function.
+
+❌ Điểm hạn chế
+*   **Giới hạn Operation**: Gói Free giới hạn 100,000 operations/tháng. Lưu ý là một query phức tạp (include nhiều bảng) có thể tính là nhiều operations.
+*   **Ecosystem Lock-in**: Phát huy sức mạnh tốt nhất khi dùng kèm Prisma Client. Nếu bạn dùng raw SQL hay ORM khác thì không tối ưu bằng.
+
+---
+
+### Tổng kết
+
+Để giúp bạn dễ dàng đưa ra quyết định cuối cùng:
+
+| Nhu cầu / Team | Database phù hợp |
+| :--- | :---: |
+| **Team Postgres + Next.js** của Vercel | **Neon** |
+| **Team "Full-stack lazy"**, cần xong MVP gấp | **Supabase** |
+| **Team Tốc độ cao**, Edge Computing | **Turso** |
+| **Team Big Data**, quen dùng MySQL | **TiDB** |
+| **Team Prisma**, ghét config nhiều | **Prisma Postgres** |
+
+Hy vọng bài viết này sẽ giúp bạn tìm được mảnh ghép database hoàn hảo cho dự án sắp tới của mình!

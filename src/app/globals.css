@@ -200,12 +200,10 @@ h6 {
 
 /* Gradient text utility */
 .gradient-text {
-    background: linear-gradient(
-        135deg,
-        var(--gradient-start),
-        var(--gradient-mid),
-        var(--gradient-end)
-    );
+    background: linear-gradient(135deg,
+            var(--gradient-start),
+            var(--gradient-mid),
+            var(--gradient-end));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -222,12 +220,10 @@ h6 {
     inset: 0;
     border-radius: inherit;
     padding: 1px;
-    background: linear-gradient(
-        135deg,
-        var(--gradient-start),
-        var(--gradient-mid),
-        var(--gradient-end)
-    );
+    background: linear-gradient(135deg,
+            var(--gradient-start),
+            var(--gradient-mid),
+            var(--gradient-end));
     -webkit-mask:
         linear-gradient(#fff 0 0) content-box,
         linear-gradient(#fff 0 0);
@@ -266,6 +262,7 @@ h6 {
         opacity: 0;
         transform: translateY(8px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -277,6 +274,7 @@ h6 {
         opacity: 0;
         transform: translateY(16px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -292,7 +290,7 @@ h6 {
 }
 
 /* Inline code */
-:not(pre) > code {
+:not(pre)>code {
     background: var(--secondary);
     padding: 0.15em 0.4em;
     border-radius: 0.25rem;
